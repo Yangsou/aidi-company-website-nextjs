@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `${process.env.STRAPI_API_URL}/api/articles?populate=category&populate=author&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+      url: `${process.env.STRAPI_API_URL}/api/articles?populate=category&populate=author&populate=cover&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
       headers: { 
         'Authorization': `Bearer ${process.env.STRAPI_API_KEY}`
       }
@@ -18,8 +18,17 @@ export async function GET(request: NextRequest) {
 
     const response = await axios.request(config)
     
+    // Transform the data to include cover_url
+    const transformedData = {
+      ...response.data,
+      data: response.data.data.map((article: any) => ({
+        ...article,
+        cover_url: article.cover ? process.env.ENVIRONMENT === 'development' ? `${process.env.STRAPI_API_URL}${article.cover.url}` : article.cover.url : null
+      }))
+    }
+    
     return NextResponse.json(
-      { success: true, data: response.data },
+      { success: true, data: transformedData },
       { status: 200 }
     )
 

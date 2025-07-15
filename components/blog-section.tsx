@@ -180,6 +180,7 @@ interface Article {
     updatedAt: string
     publishedAt: string
   }
+  cover_url?: string
 }
 
 export default function BlogSection() {
@@ -450,11 +451,19 @@ export default function BlogSection() {
                     {/* Image Thumbnail */}
                     <div className="relative overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-700 to-slate-800">
-                        <img
-                          src="/placeholder.svg"
-                          alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+                        {article.cover_url ? (
+                          <img
+                            src={article.cover_url}
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <img
+                            src="/placeholder.svg"
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        )}
                       </div>
                       {/* Category badge */}
                       <div className="absolute top-4 left-4">
