@@ -7,6 +7,7 @@ import { Calendar, User, ArrowLeft, Clock, Tag, Quote, ChevronLeft, ChevronRight
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import AnimatedBackground from "@/components/animated-background"
+import ContactSection from "@/components/contact-section"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -673,6 +674,8 @@ export default function BlogDetailPage() {
           </motion.div>
         </div>
       </main>
+
+      <ContactSection />
 
       <Footer />
     </div>

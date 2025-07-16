@@ -23,7 +23,7 @@ const socialLinks = [
   },
   {
     name: "YouTube",
-    href: "https://youtube.com/@ai+di_world",
+    href: "https://www.youtube.com/@AIplusDIJSC",
     icon: YouTubeIcon,
     color: "from-red-600 to-red-700",
     hoverColor: "hover:from-red-500 hover:to-red-600",

@@ -50,7 +50,7 @@ const socialLinks = [
   },
   {
     name: "YouTube",
-    url: "https://youtube.com/@ai+di_world",
+    url: "https://www.youtube.com/@AIplusDIJSC",
     icon: YouTubeIcon,
     color: "from-red-600 to-red-700",
     hoverColor: "hover:from-red-500 hover:to-red-600",
