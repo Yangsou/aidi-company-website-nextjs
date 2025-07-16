@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Building AI that reflects human consciousness and enhances our potential for conscious living in the digital age.',
     images: [
       {
-        url: 'https://www.aidi.world/api/og',
+        url: 'https://www.aidi.world/og-image-fallback.png',
         width: 1200,
         height: 630,
         alt: 'AIDI - AI that reflects. Not replaces.',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     creator: '@aidi_world',
     title: 'AIDI - AI that reflects. Not replaces.',
     description: 'Building AI that reflects human consciousness and enhances our potential for conscious living in the digital age.',
-    images: ['https://www.aidi.world/api/og'],
+    images: ['https://www.aidi.world/og-image-fallback.png'],
   },
   icons: {
     icon: '/aidi-logo.svg',
@@ -55,11 +55,11 @@ export default function RootLayout({
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:secure_url" content="https://www.aidi.world/api/og" />
+        <meta property="og:image:secure_url" content="https://www.aidi.world/og-image-fallback.png" />
         <meta name="twitter:image:alt" content="AIDI - AI that reflects. Not replaces." />
         <meta name="theme-color" content="#0f172a" />
         <meta name="msapplication-TileColor" content="#0f172a" />
-        <meta name="msapplication-TileImage" content="https://www.aidi.world/api/og" />
+        <meta name="msapplication-TileImage" content="https://www.aidi.world/og-image-fallback.png" />
         <meta name="application-name" content="AIDI" />
         <meta name="apple-mobile-web-app-title" content="AIDI" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -67,6 +67,21 @@ export default function RootLayout({
         <link rel="canonical" href="https://www.aidi.world" />
         <link rel="icon" type="image/x-icon" href="/aidi-logo.svg" />
         <link rel="apple-touch-icon" href="/aidi-logo.svg" />
+        
+        {/* Additional meta tags for better Teams compatibility */}
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <meta name="msapplication-TileColor" content="#0f172a" />
+        <meta name="msapplication-TileImage" content="/aidi-logo.svg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:secure_url" content="https://www.aidi.world/api/og?v=1" />
+        <meta property="og:site_name" content="AIDI" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.aidi.world" />
+        <meta property="og:title" content="AIDI - AI that reflects. Not replaces." />
+        <meta property="og:description" content="Building AI that reflects human consciousness and enhances our potential for conscious living in the digital age." />
       </head>
       <body>{children}</body>
     </html>
