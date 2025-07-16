@@ -22,7 +22,7 @@ export async function GET(
     // Process the cover image URL if it exists
     if (response.data.data?.cover?.url) {
       const coverUrl = process.env.ENVIRONMENT === 'development' ? `${process.env.STRAPI_API_URL}${response.data.data.cover.url}` : response.data.data.cover.url
-      console.log('coverUrl', coverUrl)
+
       response.data.data.cover_url = coverUrl
     }
 

@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
         avatar_url: member.avatar ? process.env.ENVIRONMENT === 'development' ? `${process.env.STRAPI_API_URL}${member.avatar.url}` : member.avatar.url : null
       }))
     }
-    console.log('transformedDatatransformedData', transformedData.data[0].avatar_url)
     
     return NextResponse.json(
       { success: true, data: transformedData },
