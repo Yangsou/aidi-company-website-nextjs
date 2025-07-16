@@ -64,7 +64,7 @@ const socialLinks = [
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/company/ai+di",
+    url: "https://www.linkedin.com/in/aidiworld",
     icon: LinkedInIcon,
     color: "from-blue-600 to-blue-700",
     hoverColor: "hover:from-blue-500 hover:to-blue-600",

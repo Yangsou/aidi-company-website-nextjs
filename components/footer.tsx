@@ -37,7 +37,7 @@ const socialLinks = [
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/company/ai+di",
+    href: "https://www.linkedin.com/in/aidiworld",
     icon: LinkedInIcon,
     color: "from-blue-600 to-blue-700",
     hoverColor: "hover:from-blue-500 hover:to-blue-600",
