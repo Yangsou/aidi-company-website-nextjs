@@ -411,8 +411,6 @@ export default function BlogDetailPage() {
   useEffect(() => {
     const fetchArticleDetail = async () => {
       try {
-        console.log('Looking for slug:', params.slug)
-        
         // First, fetch all articles to find the one with matching slug
         const articlesResponse = await fetch('/api/articles')
         const articlesResult = await articlesResponse.json()
@@ -421,14 +419,17 @@ export default function BlogDetailPage() {
           throw new Error('Failed to fetch articles')
         }
 
-        console.log('Available articles:', articlesResult.data.data.map((a: any) => ({ slug: a.slug, title: a.title })))
-
         // Find the article with matching slug
-        const targetArticle = articlesResult.data.data.find((article: any) => 
+        let targetArticle = articlesResult.data.data.find((article: any) => 
           article.slug === params.slug
         )
 
-        console.log('Target article found:', targetArticle)
+        // If slug not found, try to find by documentId (fallback)
+        if (!targetArticle) {
+          targetArticle = articlesResult.data.data.find((article: any) => 
+            article.documentId === params.slug
+          )
+        }
 
         if (!targetArticle) {
           setError('Article not found')

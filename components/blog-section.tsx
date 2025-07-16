@@ -299,8 +299,14 @@ export default function BlogSection() {
   }
 
   // Handle read more button click
-  const handleReadMore = (slug: string) => {
-    router.push(`/blog/${slug}`)
+  const handleReadMore = (article: Article) => {
+    // Use slug if available, otherwise fallback to documentId
+    const identifier = article.slug || article.documentId
+    if (identifier) {
+      router.push(`/blog/${identifier}`)
+    } else {
+      console.error('No slug or documentId found for article:', article)
+    }
   }
 
   // Handle load more articles
@@ -507,7 +513,7 @@ export default function BlogSection() {
                       {/* Read More Button */}
                       <Button
                         variant="ghost"
-                        onClick={() => handleReadMore(article.slug)}
+                        onClick={() => handleReadMore(article)}
                         className="w-full text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 p-0 h-auto justify-start group/btn border-t border-cyan-500/20 pt-4"
                       >
                         Read More
