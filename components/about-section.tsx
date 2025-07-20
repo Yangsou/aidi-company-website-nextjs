@@ -1,54 +1,72 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Brain, Heart, Users, Lightbulb, Target, Compass, Zap } from "lucide-react"
+import { Brain, Heart, Users, Lightbulb, Target, Compass, Zap, Eye, RotateCcw, Moon, Scale, Network, Leaf, Sparkles, MessageSquare } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { useState, useEffect } from "react"
 
 const principles = [
   {
-    icon: Brain,
-    title: "Conscious Intelligence",
+    icon: Eye,
+    title: "Conscious Grounding",
     description:
-      "AI that enhances human awareness rather than replacing human judgment, fostering deeper self-understanding.",
+      "The Foundation of All Operation. Without conscious awareness, any tool, even AI, can be misused. Consciousness means observing yourself in real time and choosing with intention, not reacting blindly. This is the foundation of all true creativity, evolution, and clarity.",
     gradient: "from-cyan-500 to-blue-600",
   },
   {
-    icon: Heart,
-    title: "Emotional Harmony",
+    icon: RotateCcw,
+    title: "Constant Change",
     description:
-      "Technology that respects and nurtures human emotional well-being, creating balance in digital interactions.",
-    gradient: "from-pink-500 to-rose-600",
-  },
-  {
-    icon: Users,
-    title: "Community First",
-    description: "Building connections and fostering genuine human relationships through thoughtful technology design.",
+      "Everything is always in motion. Nothing is fixed. Growth begins when we accept and adapt to change.",
     gradient: "from-purple-500 to-indigo-600",
   },
   {
-    icon: Lightbulb,
-    title: "Mindful Innovation",
-    description: "Creating solutions that serve humanity's highest potential while respecting natural human rhythms.",
+    icon: Moon,
+    title: "Cyclical Nature",
+    description: 
+      "Nature works in rhythms — day/night, seasons, life/death. Living in tune with these cycles helps us act at the right time and with less energy waste.",
     gradient: "from-amber-500 to-orange-600",
+  },
+  {
+    icon: Scale,
+    title: "Dynamic Balance",
+    description: 
+      "Balance isn't about standing still. It's the ability to adjust in motion, to know when to advance or retreat, open or close, without extremes.",
+    gradient: "from-green-500 to-emerald-600",
+  },
+  {
+    icon: Network,
+    title: "Interdependence",
+    description: 
+      "Opposites need each other to exist, light/dark, action/rest. Respecting difference creates wholeness. Nothing stands alone.",
+    gradient: "from-pink-500 to-rose-600",
+  },
+  {
+    icon: Leaf,
+    title: "Aligning with Nature",
+    description: 
+      "Instead of forcing, we listen. Instead of controlling, we attune. This is the path of least resistance, but deepest impact.",
+    gradient: "from-teal-500 to-cyan-600",
+  },
+  {
+    icon: Sparkles,
+    title: "Essence Insight",
+    description: 
+      "Wisdom begins when we see the essence, not just surface appearances. We act not from emotion or bias, but from clarity and truth.",
+    gradient: "from-violet-500 to-purple-600",
   },
   {
     icon: Target,
     title: "Purpose-Driven",
-    description:
-      "Every feature designed with intention and meaningful impact, avoiding technology for technology's sake.",
-    gradient: "from-green-500 to-emerald-600",
+    description: 
+      "Nature never stops creating, but always with direction. We grow not at any cost, but with purpose, meaning, and care for the whole.",
+    gradient: "from-blue-500 to-indigo-600",
   },
   {
-    icon: Compass,
-    title: "Ethical Foundation",
-    description: "Transparent, responsible AI development and deployment with human dignity at the center.",
-    gradient: "from-blue-500 to-purple-600",
-  },
-  {
-    icon: Zap,
-    title: "Rhythmic Living",
-    description: "Synchronizing technology with natural human rhythms and cycles for sustainable productivity.",
+    icon: MessageSquare,
+    title: "Generative Feedback",
+    description: 
+      "The Living Loop of Community. There is no true community without real feedback. We grow not by avoiding conflict, but by turning it into mirrors. AI+DI evolves through empathy, courage, and shared reflection, not just logic.",
     gradient: "from-cyan-500 to-teal-600",
   },
 ]
@@ -182,17 +200,17 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="-mb-20"
         >
           <h3 className="text-3xl md:text-4xl font-bold text-center mb-4">
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               AI+DI Philosophy
             </span>
           </h3>
-          <p className="text-center text-gray-400 mb-12 text-lg">Seven Principles Guiding Our Work</p>
+          <p className="text-center text-gray-400 mb-12 text-lg">These Principles Guiding Our Work</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {principles.slice(0, 6).map((principle, index) => (
+            {principles.map((principle, index) => (
               <motion.div
                 key={principle.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -203,18 +221,16 @@ export default function AboutSection() {
               >
                 <Card className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 h-full group overflow-hidden">
                   <CardContent className="p-6">
-                    {/* Glowing bullet point */}
-                    <div className="flex items-start space-x-4 mb-4">
+                    {/* Centered icon and title */}
+                    <div className="text-center mb-4">
                       <div
-                        className={`w-10 h-10 bg-gradient-to-br ${principle.gradient} rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                        className={`w-12 h-12 bg-gradient-to-br ${principle.gradient} rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                       >
-                        <principle.icon className="w-5 h-5 text-white" />
+                        <principle.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-                          {principle.title}
-                        </h4>
-                      </div>
+                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                        {principle.title}
+                      </h4>
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed">{principle.description}</p>
 
@@ -226,48 +242,11 @@ export default function AboutSection() {
                 </Card>
               </motion.div>
             ))}
-
-            {/* Rhythmic Living - positioned next to Ethical Foundation */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
-            >
-              <Card className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 h-full group overflow-hidden">
-                <CardContent className="p-6">
-                  {/* Glowing bullet point */}
-                  <div className="flex items-start space-x-4 mb-4">
-                    <div
-                      className={`w-10 h-10 bg-gradient-to-br ${principles[6].gradient} rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-                    >
-                      {/* create a temporary Icon variable for clarity */}
-                      {(() => {
-                        const Icon = principles[6].icon
-                        return <Icon className="w-5 h-5 text-white" />
-                      })()}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-                        {principles[6].title}
-                      </h4>
-                    </div>
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">{principles[6].description}</p>
-
-                  {/* Subtle glow effect on hover */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${principles[6].gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none rounded-lg`}
-                  />
-                </CardContent>
-              </Card>
-            </motion.div>
           </div>
         </motion.div>
 
-        {/* Leadership Team */}
-        <motion.div
+        {/* Leadership Team - Hidden */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -335,7 +314,6 @@ export default function AboutSection() {
                   whileHover={{ y: -8, scale: 1.02 }}
                 >
                   <Card className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 overflow-hidden group h-full">
-                    {/* Photo */}
                     <div className="relative overflow-hidden">
                       <div className="aspect-square bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
                         {member.avatar_url ? (
@@ -352,7 +330,6 @@ export default function AboutSection() {
                           />
                         )}
                       </div>
-                      {/* Subtle overlay on hover */}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
 
@@ -366,14 +343,13 @@ export default function AboutSection() {
                       </p>
                     </CardContent>
 
-                    {/* Subtle glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </Card>
                 </motion.div>
               ))
             )}
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   )

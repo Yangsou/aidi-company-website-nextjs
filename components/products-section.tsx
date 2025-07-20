@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const products = [
   {
@@ -29,36 +30,40 @@ const products = [
     useCases: ["Students", "Employees", "Founders"],
     gradient: "from-cyan-500 to-blue-600",
     demo: true,
+    image: "/life-rhythm-cover.jpg",
   },
   {
     icon: Building2,
-    name: "AI ERP",
+    name: "Work Rhythm",
     tagline: "Enterprise resource planning that breathes",
     description:
       "Revolutionary ERP system that synchronizes organizational workflows with human rhythms, creating more productive and sustainable work environments.",
     features: ["Rhythm-based scheduling", "Team energy mapping", "Workflow optimization", "Well-being analytics"],
     useCases: ["Organizations", "Teams", "Managers"],
     gradient: "from-blue-500 to-purple-600",
+    image: "/work-rhythm-cover.jpg",
   },
   {
     icon: GraduationCap,
-    name: "AI+DI University",
+    name: "Learning Rhythm​",
     tagline: "Learning that adapts to you",
     description:
       "Not just an app, but a complete learning journey. Personalized education that respects your learning rhythms and cognitive patterns.",
     features: ["Adaptive curriculum", "Rhythm-based learning", "Personalized pace", "Community learning"],
     useCases: ["Lifelong learners", "Professionals", "Students"],
     gradient: "from-purple-500 to-pink-600",
+    image: "/learning-rhythm-cover.png",
   },
   {
     icon: Heart,
-    name: "EAP / Mindset Balancing",
+    name: "Wellbeing Partners (AI EAP)​",
     tagline: "Emotional wellness in the AI age",
     description:
       "Employee Assistance Program focused on managing emotions and energy. Balance your mindset and maintain mental wellness in our fast-paced world.",
     features: ["Emotion tracking", "Energy balancing", "Stress management", "Mindfulness tools"],
     useCases: ["Employees", "HR teams", "Wellness coaches"],
     gradient: "from-pink-500 to-red-600",
+    image: "/wellbeing-cover.png",
   },
 ]
 
@@ -179,17 +184,16 @@ export default function ProductsSection() {
 
               {/* Two-column layout */}
               <div className="grid lg:grid-cols-2 gap-0">
-                {/* Left: Visual Demo */}
-                <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-8 lg:p-12 flex items-center justify-center">
-                  <div className="w-full max-w-md">
-                    <div className="aspect-video bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center mb-6 group hover:bg-white/20 transition-all duration-300 cursor-pointer">
-                      <div className="text-center">
-                        <Play className="w-16 h-16 text-white/80 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                        <p className="text-white/90 font-medium">Watch Demo</p>
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-white/80 text-sm">See Life Rhythm in action</p>
+                {/* Left: Product Image */}
+                <div className="bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                  <div className="w-full h-full">
+                    <div className="w-full h-full relative">
+                      <Image
+                        src="/life-rhythm-cover.jpg"
+                        alt="Life Rhythm Product"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                   </div>
                 </div>
@@ -365,10 +369,15 @@ export default function ProductsSection() {
 
                     {/* Visual */}
                     <div
-                      className={`bg-gradient-to-br ${product.gradient} p-8 lg:p-12 flex items-center justify-center ${index % 2 === 0 ? "lg:col-start-1" : ""}`}
+                      className={`bg-gradient-to-br ${product.gradient} flex items-center justify-center ${index % 2 === 0 ? "lg:col-start-1" : ""}`}
                     >
-                      <div className="w-full max-w-md aspect-square bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center">
-                        <product.icon className="w-24 h-24 text-white/80" />
+                      <div className="w-full h-full relative">
+                        <Image
+                          src={product.image}
+                          alt={`${product.name} Product`}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
                     </div>
                   </div>
