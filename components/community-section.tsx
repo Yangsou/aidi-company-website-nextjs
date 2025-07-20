@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { MessageCircle, Lightbulb, UserPlus, Award, Users, Heart, Compass } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const communityFeatures = [
   {
@@ -82,7 +83,9 @@ export default function CommunitySection() {
           className="mb-20"
         >
           <Card className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm border border-cyan-500/20 overflow-hidden">
+
             <CardContent className="p-8 lg:p-12">
+
               <div className="text-center mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
                   <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
@@ -100,25 +103,42 @@ export default function CommunitySection() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
-                {communityFeatures.map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                    className="text-center"
-                  >
-                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon className="w-8 h-8 text-cyan-400" />
+
+              <div className="grid md:grid-cols-2 gap-0 mb-12">
+                
+                <div className="p-8 lg:p-12">
+                  {communityFeatures.map((feature, index) => (
+                    <motion.div
+                      key={feature.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      whileHover={{ y: -5 }}
+                      className="text-center mb-8"
+                    >
+                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <feature.icon className="w-8 h-8 text-cyan-400" />
+                      </div>
+                      <h4 className="text-white font-semibold mb-2">{feature.title}</h4>
+                      <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                  <div className="w-full h-full">
+                    <div className="w-full h-full relative">
+                      <Image
+                        src="/community-why-an-ai.png"
+                        alt="Why an AI Companion Matters"
+                        fill
+                        
+                      />
                     </div>
-                    <h4 className="text-white font-semibold mb-2">{feature.title}</h4>
-                    <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-                  </motion.div>
-                ))}
+                  </div>
+                </div>
               </div>
+
             </CardContent>
           </Card>
         </motion.div>
