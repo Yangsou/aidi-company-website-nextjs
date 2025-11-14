@@ -545,7 +545,7 @@ const SidebarMenuButton = React.forwardRef<
 
     const button = (
       <Comp
-        ref={ref as React.Ref<HTMLDivElement>}
+        ref={ref as React.Ref<HTMLButtonElement>}
         data-sidebar="menu-button"
         data-size={size}
         data-active={isActive}
