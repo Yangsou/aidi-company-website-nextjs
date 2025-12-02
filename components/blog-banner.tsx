@@ -1,44 +1,83 @@
 'use client'
-
-// import { motion } from 'framer-motion'
-// import { Heart, Zap, Shield, ArrowRight } from 'lucide-react'
-// import { Card, CardContent } from '@/components/ui/card'
-// import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-// import Link from 'next/link'
+import Link from 'next/link'
 
-// const features = [
-//   {
-//     icon: 'home/values-1.png',
-//     title: 'Learning Rhythm',
-//     description:
-//       'Personalized learning journeys that adapt to your natural patterns and optimal growth moments.',
-//     gradient: 'from-pink-500 to-rose-600',
-//   },
-//   {
-//     icon: 'home/values-2.png',
-//     title: 'Working Rhythm',
-//     description:
-//       'Seamless integration of AI tools that amplify your capabilities while maintaining human creativity.',
-//     gradient: 'from-cyan-500 to-blue-600',
-//   },
-//   {
-//     icon: 'home/values-3.png',
-//     title: 'Life Rhythm',
-//     description:
-//       'Embrace conscious living where technology enhances rather than overwhelms your daily experience.',
-//     gradient: 'from-purple-500 to-indigo-600',
-//   },
-//   {
-//     icon: 'home/values-4.png',
-//     title: 'Organization Rhythm',
-//     description:
-//       'Foster a living system where businesses, data, and intelligence move in harmony — aligning purpose with performance.',
-//     gradient: 'from-purple-500 to-indigo-600',
-//   },
-// ]
+import { getCategoryReadTime } from '@/lib/blog-helpers'
+import { useHighlightArticle } from '@/lib/hooks/use-blog-data'
+import { formatDateString } from '@/lib/utils'
+
+import { Skeleton } from './ui/skeleton'
+
+import type { Article } from '@/lib/hooks/use-blog-data'
+
+const BannerSkeleton = () => {
+  return (
+    <>
+      <div className="col-span-12 lg:col-span-6">
+        <div className="p-8">
+          <Skeleton className="h-6 w-1/4" />
+          <Skeleton className="mt-4 h-20 w-full" />
+
+          <div className="mt-8 flex space-x-3">
+            <Skeleton className="h-4 w-32" />
+            <Skeleton className="h-4 w-32" />
+          </div>
+        </div>
+      </div>
+      <Skeleton className="col-span-12 h-[400px] w-full lg:col-span-6 lg:h-full" />
+    </>
+  )
+}
+
+function BannerItem({ article }: { article: Article }) {
+  const { title, category, slug = '', publishedAt, cover_url: coverUrl } = article
+  return (
+    <>
+      <div className="col-span-12 flex flex-col gap-4 bg-[#FFFFFF] lg:col-span-6">
+        <div className="p-8">
+          <div className="font-[Manrope] text-[24px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
+            {category?.name}
+          </div>
+          <Link
+            href={`/blog/${slug ?? ''}`}
+            className="font-[Manrope] text-[28px] font-semibold leading-[130%] text-[#202222] lg:text-[42px]"
+          >
+            {title}
+          </Link>
+          <div className="mt-4 flex items-center justify-start gap-12">
+            <div className="font-[Manrope] text-[20px] font-normal leading-[150%] text-[#525757]">
+              {formatDateString(publishedAt)}
+            </div>
+            <div className="flex items-center gap-2 font-[Manrope] text-[20px] font-normal leading-[150%] text-[#525757]">
+              <div className="h-[13px] w-[13px] rounded-full bg-[#00C8B3]" />{' '}
+              {getCategoryReadTime(category?.name ?? '')}
+            </div>
+          </div>
+          <div className="pt-4">
+            <Link href={`/blog/${slug ?? ''}`}>
+              <button className="border border-[#A0DCDD] px-4 py-2 align-middle font-[Manrope] text-[18px] font-semibold leading-[150%] text-[#A0DCDD] hover:border-transparent hover:bg-[#A0DCDD] hover:text-white">
+                Read more<span className="ml-2">→</span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="relative col-span-12 h-[400px] w-full lg:col-span-6 lg:h-full">
+        <Image
+          src={coverUrl ?? '/blog/blog-banner-image.svg'}
+          alt="AI and human connection"
+          fill
+          className="h-full w-full object-cover object-center"
+          priority
+        />
+      </div>
+    </>
+  )
+}
 
 export default function BlogBanner() {
+  const { article, isLoading } = useHighlightArticle()
+
   return (
     <section className="bg-[#F7F9FD]">
       <div className="flex justify-center">
@@ -53,38 +92,9 @@ export default function BlogBanner() {
             </div>
           </div>
 
-          <div className="col-span-12 flex flex-col gap-4 bg-[#FFFFFF] lg:col-span-6">
-            <div className="p-8">
-              <div className="font-[Manrope] text-[24px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
-                *Catagory*
-              </div>
-              <p className="font-[Manrope] text-[28px] font-semibold leading-[130%] text-[#202222] lg:text-[42px]">
-                *Title newest* Lorem Ipsum is simply dummy text of the printing
-              </p>
-              <div className="mt-4 flex items-center justify-start gap-12">
-                <div className="font-[Manrope] text-[20px] font-normal leading-[150%] text-[#525757]">
-                  dd/MMM/yy
-                </div>
-                <div className="flex items-center gap-2 font-[Manrope] text-[20px] font-normal leading-[150%] text-[#525757]">
-                  <div className="h-[13px] w-[13px] rounded-full bg-[#00C8B3]" /> 0 min read
-                </div>
-              </div>
-              <div className="pt-4">
-                <button className="border border-[#A0DCDD] px-4 py-2 align-middle font-[Manrope] text-[18px] font-semibold leading-[150%] text-[#A0DCDD]">
-                  Read more<span className="ml-2">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="relative col-span-12 h-[400px] w-full lg:col-span-6 lg:h-full">
-            <Image
-              src="/blog/blog-banner-image.svg"
-              alt="AI and human connection"
-              fill
-              className="h-full w-full object-cover object-center"
-              priority
-            />
-          </div>
+          {isLoading && <BannerSkeleton />}
+
+          {!!article && <BannerItem article={article} />}
         </div>
       </div>
     </section>
