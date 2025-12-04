@@ -164,6 +164,62 @@ export function useCategories() {
   }
 }
 
+export function useHighlightArticle() {
+  const { data, error, isLoading } = useSWR<ArticlesApiResponse>(
+    `/api/articles?highlight=true`,
+    fetcher,
+    {
+      keepPreviousData: true,
+    }
+  )
+
+  const article =
+    typeof data?.data?.length === 'number' && data.data.length > 0 ? data.data[0] : null
+
+  return {
+    article,
+    isLoading,
+    isError: error,
+  }
+}
+export function usePopularArticles(pageSize = 3) {
+  const { data, error, isLoading } = useSWR<ArticlesApiResponse>(
+    `/api/articles?page=${1}&pageSize=${pageSize}&popular=${true}`,
+    fetcher,
+    {
+      keepPreviousData: true,
+    }
+  )
+
+  return {
+    articles: data?.data ?? [],
+    isLoading,
+    isError: error,
+  }
+}
+export function useRelatedArticles({
+  categoryName,
+  excludeSlug,
+  pageSize = 3,
+}: {
+  excludeSlug: string
+  categoryName: string
+  pageSize: number
+}) {
+  const { data, error, isLoading } = useSWR<ArticlesApiResponse>(
+    `/api/articles?page=${1}&pageSize=${pageSize}&category=${categoryName}&excludeSlug=${excludeSlug}`,
+    fetcher,
+    {
+      keepPreviousData: true,
+    }
+  )
+
+  return {
+    articles: data?.data ?? [],
+    isLoading,
+    isError: error as string,
+  }
+}
 export function useArticles(page = 1, pageSize = 10) {
   const { data, error, isLoading, mutate } = useSWR<ArticlesApiResponse>(
     `/api/articles?page=${page}&pageSize=${pageSize}`,

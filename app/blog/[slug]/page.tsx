@@ -3,20 +3,20 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Calendar, User, ArrowLeft, Clock, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowLeft, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 
-import AnimatedBackground from '@/components/animated-background'
-import ContactSection from '@/components/contact-section'
 import { ErrorBoundary } from '@/components/error-boundary'
 import Footer from '@/components/footer'
 import Navigation from '@/components/navigation'
+import RelatedBlog from '@/components/related-blog'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { getCategoryGradient, getCategoryIcon, getCategoryReadTime } from '@/lib/blog-helpers'
+import { getCategoryReadTime } from '@/lib/blog-helpers'
 import { useArticleDetail } from '@/lib/hooks/use-blog-data'
+import { formatDateString } from '@/lib/utils'
 
 // Block interfaces based on Strapi response
 type RichTextBlock = {
@@ -508,19 +508,18 @@ export default function BlogDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen overflow-x-hidden bg-slate-950 text-white">
-        <AnimatedBackground />
+      <div className="min-h-screen overflow-x-hidden text-white">
         <Navigation />
         <main className="relative z-10 pt-16">
-          <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
             <div className="animate-pulse">
-              <div className="mb-4 h-8 rounded bg-slate-800" />
-              <div className="mb-8 h-12 rounded bg-slate-800" />
-              <div className="mb-8 aspect-video rounded bg-slate-800" />
+              <div className="mb-4 h-8 rounded bg-slate-300" />
+              <div className="mb-8 h-12 rounded bg-slate-300" />
+              <div className="mb-8 aspect-video rounded bg-slate-300" />
               <div className="space-y-4">
-                <div className="h-4 rounded bg-slate-800" />
-                <div className="h-4 rounded bg-slate-800" />
-                <div className="h-4 w-3/4 rounded bg-slate-800" />
+                <div className="h-4 rounded bg-slate-300" />
+                <div className="h-4 rounded bg-slate-300" />
+                <div className="h-4 w-3/4 rounded bg-slate-300" />
               </div>
             </div>
           </div>
@@ -532,8 +531,7 @@ export default function BlogDetailPage() {
 
   if (isError || (!isLoading && !article)) {
     return (
-      <div className="min-h-screen overflow-x-hidden bg-slate-950 text-white">
-        <AnimatedBackground />
+      <div className="min-h-screen overflow-x-hidden text-white">
         <Navigation />
         <main className="relative z-10 pt-16">
           <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
@@ -563,33 +561,15 @@ export default function BlogDetailPage() {
   }
 
   // Handle missing fields gracefully
-  const { category, author, blocks } = article
+  const { category, blocks, publishedAt, description } = article
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-slate-950 text-white">
-      <AnimatedBackground />
+    <div className="h-full min-h-screen overflow-x-hidden">
       <Navigation />
 
-      <main className="relative z-10 pt-16">
+      <main className="relative z-10 min-h-[calc(100vh_-_240px)] pt-16">
         <ErrorBoundary>
-          <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
-            {/* Back Button */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
-            >
-              <Button
-                onClick={handleBackToBlog}
-                variant="ghost"
-                className="font-spaceGrotesk text-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-300"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Blog
-              </Button>
-            </motion.div>
-
+          <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
             {/* Article Header */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -598,49 +578,18 @@ export default function BlogDetailPage() {
               className="mb-12"
             >
               {/* Category Badge */}
-              <div className="mb-6">
-                {(() => {
-                  const CategoryIcon = getCategoryIcon(category.name)
-                  const gradient = getCategoryGradient(category.name)
-                  return (
-                    <span
-                      className={`inline-flex items-center rounded-full bg-gradient-to-r px-3 py-1 text-sm font-medium ${gradient} text-white`}
-                    >
-                      <CategoryIcon className="mr-2 h-3 w-3" />
-                      {category.name}
-                    </span>
-                  )
-                })()}
+              <div className="mb-6 flex items-center space-x-3">
+                <span className="font-[Manrope] text-[24px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
+                  {category?.name}
+                </span>
+                <p>{formatDateString(publishedAt)}</p>
+                <p>{getCategoryReadTime(category.name)}</p>
               </div>
 
               {/* Title */}
-              <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  {article.title}
-                </span>
+              <h1 className="font-[Manrope] text-[28px] font-semibold leading-[130%] text-[#202222]">
+                {article.title}
               </h1>
-
-              {/* Meta Information */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
-                <div className="flex items-center space-x-2">
-                  <User className="h-4 w-4" />
-                  <span>{author.name}</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>
-                    {new Date(article.publishedAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{getCategoryReadTime(category.name)}</span>
-                </div>
-              </div>
             </motion.div>
 
             {/* Featured Image */}
@@ -670,17 +619,17 @@ export default function BlogDetailPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Card className="border border-cyan-500/20 bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm">
-                <CardContent className="p-8">
+              <Card className="border-transparent shadow-none">
+                <CardContent className="p-0">
                   {/* Description */}
                   <div className="prose prose-invert mb-8 max-w-none">
-                    <p className="text-xl leading-relaxed text-gray-300">
-                      {article.short_description ?? article.description}
+                    <p className="text-xl leading-relaxed text-[#525757]">
+                      {article.short_description ?? description}
                     </p>
                   </div>
 
                   {/* Blocks Content */}
-                  {blocks.length > 0 ? (
+                  {blocks.length > 0 && (
                     <div className="space-y-6">
                       {blocks.map((block, index) => (
                         <motion.div
@@ -693,19 +642,10 @@ export default function BlogDetailPage() {
                         </motion.div>
                       ))}
                     </div>
-                  ) : (
-                    <div className="space-y-4 leading-relaxed text-gray-400">
-                      <p>{article.description}</p>
-                      <p>
-                        This is a placeholder for the full article content. In a real
-                        implementation, you would have rich text content from Strapi that could
-                        include headings, paragraphs, lists, images, and other formatted content.
-                      </p>
-                    </div>
                   )}
 
                   {/* Article Footer */}
-                  <div className="mt-12 border-t border-cyan-500/20 pt-8">
+                  {/* <div className="mt-12 border-t border-cyan-500/20 pt-8">
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <div className="flex items-center space-x-4">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20">
@@ -725,17 +665,23 @@ export default function BlogDetailPage() {
                         Back to Blog
                       </Button>
                     </div>
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
             </motion.div>
           </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <RelatedBlog
+              categoryName={article.category.name}
+              excludeSlug={slug ?? ''}
+            />
+          </motion.div>
         </ErrorBoundary>
       </main>
-
-      <ErrorBoundary>
-        <ContactSection />
-      </ErrorBoundary>
 
       <Footer />
     </div>

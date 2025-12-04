@@ -53,6 +53,7 @@
     "clsx": "^2.1.1",
     "cmdk": "latest",
     "date-fns": "4.1.0",
+    "dayjs": "^1.11.19",
     "embla-carousel-react": "latest",
     "framer-motion": "latest",
     "input-otp": "latest",
