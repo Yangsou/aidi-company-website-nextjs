@@ -98,10 +98,35 @@ export async function GET(request: NextRequest) {
     const pageSize = searchParams.get('pageSize') ?? '10'
     const baseUrl = trimTrailingSlash(requireEnv('STRAPI_API_URL'))
     const apiKey = requireEnv('STRAPI_API_KEY')
+    const highlight = searchParams.get('highlight')
+    const category = searchParams.get('category')
+    const isPopular = searchParams.get('popular')
+    const excludeSlug = searchParams.get('excludeSlug')
+
+    const newSearchParams = new URLSearchParams()
+    newSearchParams.set('populate', 'category')
+    newSearchParams.set('populate', 'author')
+    newSearchParams.set('populate', 'cover')
+    newSearchParams.set('pagination[page]', page)
+    newSearchParams.set('pagination[pageSize]', pageSize)
+    if (isPopular) {
+      newSearchParams.set('filters[isPopular]', 'true')
+    }
+    if (category) {
+      newSearchParams.set('filters[category][name]', category)
+    }
+    if (highlight) {
+      newSearchParams.set('filters[highlight]', 'true')
+    }
+    if (excludeSlug) {
+      newSearchParams.set('filters[slug][$ne]', excludeSlug)
+    }
+    // const url = `${baseUrl}/api/articles?populate=category&populate=author&populate=cover&pagination[page]=${page}&pagination[pageSize]=${pageSize}${highlight ? `&filters[highlight]=${highlight}` : ''}`
+    const url = `${baseUrl}/api/articles?${newSearchParams.toString()}`
     const config: AxiosRequestConfig<ArticleListResponse> = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `${baseUrl}/api/articles?populate=category&populate=author&populate=cover&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+      url,
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },

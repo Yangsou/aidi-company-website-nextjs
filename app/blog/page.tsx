@@ -2,12 +2,15 @@
 
 import dynamic from 'next/dynamic'
 
-import AnimatedBackground from '@/components/animated-background'
+// import AnimatedBackground from '@/components/animated-background'
+import BlogBanner from '@/components/blog-banner'
+import BlogMostPopular from '@/components/blog-most-popular'
 import { ErrorBoundary } from '@/components/error-boundary'
 import Footer from '@/components/footer'
+// import LastBlog from '@/components/last-blog'
 import Navigation from '@/components/navigation'
 
-const BlogSection = dynamic(() => import('@/components/blog-section'), {
+const BlogSection = dynamic(() => import('@/components/last-blog'), {
   loading: () => (
     <div className="flex min-h-screen items-center justify-center">
       <div className="text-center">
@@ -22,12 +25,15 @@ const BlogSection = dynamic(() => import('@/components/blog-section'), {
 export default function BlogPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-950 text-white">
-      <AnimatedBackground />
+      {/* <AnimatedBackground /> */}
       <Navigation />
 
-      <main className="relative z-10 pt-16">
+      <main className="relative z-10 bg-[#F7F9FD] py-16">
         <ErrorBoundary>
+          <BlogBanner />
+          <BlogMostPopular />
           <BlogSection />
+          {/* <LastBlog /> */}
         </ErrorBoundary>
       </main>
 
