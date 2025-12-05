@@ -54,10 +54,13 @@ export async function GET(_request: NextRequest) {
     const apiKey = requireEnv('STRAPI_API_KEY')
     const environment = process.env.ENVIRONMENT ?? 'production'
 
+    const newSearchParams = new URLSearchParams()
+    newSearchParams.set('populate', 'avatar')
+
     const config: AxiosRequestConfig = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `${baseUrl}/api/team-members?populate=avatar`,
+      url: `${baseUrl}/api/team-members?${newSearchParams.toString()}`,
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
