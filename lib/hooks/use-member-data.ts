@@ -18,8 +18,7 @@ type TeamMemberApiResponse = {
 }
 export function useMembers() {
   const { data, error, isLoading } = useSWR<TeamMemberApiResponse>(`/api/team-members`, fetcher, {
-    revalidateOnFocus: false,
-    dedupingInterval: 60000,
+    keepPreviousData: true,
   })
 
   return {

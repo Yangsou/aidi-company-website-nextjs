@@ -47,7 +47,6 @@ export function useJobLocations() {
     fetcher,
     {
       revalidateOnFocus: false,
-      dedupingInterval: 60000,
     }
   )
 
