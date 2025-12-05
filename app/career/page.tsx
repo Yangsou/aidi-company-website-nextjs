@@ -1,13 +1,9 @@
 'use client'
 
 import CareerBanner from '@/components/career-banner'
+import { ErrorBoundary } from '@/components/error-boundary'
 import Footer from '@/components/footer'
 import Navigation from '@/components/navigation'
-// import ProductsSection from '@/components/products-section'
-// import ContactSection from '@/components/contact-section'
-// import AnimatedBackground from '@/components/animated-background'
-// import ProductSectionNew from '@/components/product-section-new'
-// import AboutBanner from '@/components/about-banner'
 import WeAreSeeking from '@/components/we-are-seeking'
 
 export default function ProductsPage() {
@@ -17,11 +13,10 @@ export default function ProductsPage() {
       <Navigation />
 
       <main className="relative z-0 pt-16">
-        <CareerBanner />
-        <WeAreSeeking />
-
-        {/* <ProductsSection /> */}
-        {/* <ContactSection /> */}
+        <ErrorBoundary>
+          <CareerBanner />
+          <WeAreSeeking />
+        </ErrorBoundary>
       </main>
 
       <Footer />
