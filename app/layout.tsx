@@ -1,4 +1,6 @@
+import Footer from '@/components/footer'
 import GoogleTagManager from '@/components/GoogleTagManager'
+import Navigation from '@/components/navigation'
 import { SWRProvider } from '@/components/providers/swr-provider'
 
 import type { Metadata, Viewport } from 'next'
@@ -188,7 +190,15 @@ export default function RootLayout({
       </head>
       <body>
         <GoogleTagManager />
-        <SWRProvider>{children}</SWRProvider>
+        <SWRProvider>
+          <main className="min-h-screen overflow-x-hidden text-white">
+            {/* <AnimatedBackground /> */}
+            <Navigation />
+
+            <div className="relative z-10">{children}</div>
+            <Footer />
+          </main>
+        </SWRProvider>
       </body>
     </html>
   )

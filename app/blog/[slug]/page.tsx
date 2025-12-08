@@ -564,88 +564,85 @@ export default function BlogDetailPage() {
   const { category, blocks, publishedAt, description } = article
 
   return (
-    <div className="h-full min-h-screen overflow-x-hidden">
-      <Navigation />
+    <div className="relative z-10 min-h-[calc(100vh_-_240px)] pt-16">
+      <ErrorBoundary>
+        <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+          {/* Article Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            {/* Category Badge */}
+            <div className="mb-6 flex items-center space-x-3">
+              <span className="font-[Manrope] text-[24px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
+                {category?.name}
+              </span>
+              <p>{formatDateString(publishedAt)}</p>
+              <p>{getCategoryReadTime(category.name)}</p>
+            </div>
 
-      <main className="relative z-10 min-h-[calc(100vh_-_240px)] pt-16">
-        <ErrorBoundary>
-          <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
-            {/* Article Header */}
+            {/* Title */}
+            <h1 className="font-[Manrope] text-[28px] font-semibold leading-[130%] text-[#202222]">
+              {article.title}
+            </h1>
+          </motion.div>
+
+          {/* Featured Image */}
+          {article.cover_url && (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-12"
             >
-              {/* Category Badge */}
-              <div className="mb-6 flex items-center space-x-3">
-                <span className="font-[Manrope] text-[24px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
-                  {category?.name}
-                </span>
-                <p>{formatDateString(publishedAt)}</p>
-                <p>{getCategoryReadTime(category.name)}</p>
+              <div className="relative aspect-video overflow-hidden rounded-xl bg-gradient-to-br from-slate-700 to-slate-800">
+                <Image
+                  src={article.cover_url}
+                  alt={article.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
               </div>
-
-              {/* Title */}
-              <h1 className="font-[Manrope] text-[28px] font-semibold leading-[130%] text-[#202222]">
-                {article.title}
-              </h1>
             </motion.div>
+          )}
 
-            {/* Featured Image */}
-            {article.cover_url && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-12"
-              >
-                <div className="relative aspect-video overflow-hidden rounded-xl bg-gradient-to-br from-slate-700 to-slate-800">
-                  <Image
-                    src={article.cover_url}
-                    alt={article.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1200px) 100vw, 1200px"
-                    priority
-                  />
+          {/* Article Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <Card className="border-transparent shadow-none">
+              <CardContent className="p-0">
+                {/* Description */}
+                <div className="prose prose-invert mb-8 max-w-none">
+                  <p className="text-xl leading-relaxed text-[#525757]">
+                    {article.short_description ?? description}
+                  </p>
                 </div>
-              </motion.div>
-            )}
 
-            {/* Article Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Card className="border-transparent shadow-none">
-                <CardContent className="p-0">
-                  {/* Description */}
-                  <div className="prose prose-invert mb-8 max-w-none">
-                    <p className="text-xl leading-relaxed text-[#525757]">
-                      {article.short_description ?? description}
-                    </p>
+                {/* Blocks Content */}
+                {blocks.length > 0 && (
+                  <div className="space-y-6">
+                    {blocks.map((block, index) => (
+                      <motion.div
+                        key={block.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 * index }}
+                      >
+                        <BlockRenderer block={block} />
+                      </motion.div>
+                    ))}
                   </div>
+                )}
 
-                  {/* Blocks Content */}
-                  {blocks.length > 0 && (
-                    <div className="space-y-6">
-                      {blocks.map((block, index) => (
-                        <motion.div
-                          key={block.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.1 * index }}
-                        >
-                          <BlockRenderer block={block} />
-                        </motion.div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Article Footer */}
-                  {/* <div className="mt-12 border-t border-cyan-500/20 pt-8">
+                {/* Article Footer */}
+                {/* <div className="mt-12 border-t border-cyan-500/20 pt-8">
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <div className="flex items-center space-x-4">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20">
@@ -666,24 +663,21 @@ export default function BlogDetailPage() {
                       </Button>
                     </div>
                   </div> */}
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <RelatedBlog
-              categoryName={article.category.name}
-              excludeSlug={slug ?? ''}
-            />
+              </CardContent>
+            </Card>
           </motion.div>
-        </ErrorBoundary>
-      </main>
-
-      <Footer />
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <RelatedBlog
+            categoryName={article.category.name}
+            excludeSlug={slug ?? ''}
+          />
+        </motion.div>
+      </ErrorBoundary>
     </div>
   )
 }
