@@ -1,7 +1,7 @@
 import axios, { isAxiosError } from 'axios'
 import { NextResponse } from 'next/server'
 
-import { requireEnv, trimTrailingSlash } from '@/lib/env'
+import { requireEnv, resolveUrl, trimTrailingSlash } from '@/lib/env'
 
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import type { NextRequest } from 'next/server'
@@ -81,14 +81,6 @@ const getMediaSourceUrl = (media: ArticleListItem['cover']): string | null => {
   }
 
   return null
-}
-
-const resolveUrl = (baseUrl: string, value: string | null): string | null => {
-  if (!value) {
-    return null
-  }
-
-  return /^https?:\/\//.test(value) ? value : `${baseUrl}${value}`
 }
 
 export async function GET(request: NextRequest) {

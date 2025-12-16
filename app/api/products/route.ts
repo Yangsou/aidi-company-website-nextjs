@@ -1,7 +1,7 @@
 import axios, { isAxiosError } from 'axios'
 import { NextResponse } from 'next/server'
 
-import { requireEnv, trimTrailingSlash } from '@/lib/env'
+import { requireEnv, resolveUrl, trimTrailingSlash } from '@/lib/env'
 
 import type { AxiosRequestConfig } from 'axios'
 import type { NextRequest } from 'next/server'
@@ -54,11 +54,11 @@ export async function GET(_request: NextRequest) {
       ...product,
       logo: {
         ...product.logo,
-        url: product.logo ? `${baseUrl}${product.logo.url}` : undefined,
+        url: product.logo ? resolveUrl(baseUrl, product.logo.url) : undefined,
       },
       icon: {
         ...product.icon,
-        url: product.icon ? `${baseUrl}${product.icon.url}` : undefined,
+        url: product.icon ? resolveUrl(baseUrl, product.icon.url) : undefined,
       },
     }))
 

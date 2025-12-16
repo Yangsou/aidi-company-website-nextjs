@@ -9,3 +9,10 @@ export const requireEnv = (key: RequiredEnvKey): string => {
 }
 
 export const trimTrailingSlash = (value: string): string => value.replace(/\/+$/, '')
+export const resolveUrl = (baseUrl: string, value: string | null): string | null => {
+  if (!value) {
+    return null
+  }
+
+  return /^https?:\/\//.test(value) ? value : `${baseUrl}${value}`
+}
