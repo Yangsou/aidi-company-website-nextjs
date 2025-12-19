@@ -66,7 +66,7 @@
     "react-dom": "^18",
     "react-hook-form": "latest",
     "react-is": "^19.2.0",
-    "react-resizable-panels": "latest",
+    "react-resizable-panels": "3.0.3",
     "react-window": "^2.2.3",
     "recharts": "latest",
     "sonner": "latest",
