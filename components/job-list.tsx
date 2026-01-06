@@ -39,7 +39,7 @@ export default function JobList() {
   const searchParams = useSearchParams()
   const location = searchParams.getAll('location')
   const { jobs, hasMore, isError, isLoading, loadMore, countMore } = useInfiniteJobs({
-    pageSize: 2,
+    pageSize: 5,
     location,
   })
 
