@@ -14,9 +14,9 @@
     "academy_desc": "Công ty Cổ phần AI+DI ACADEMY",
     "academy_address": "Số 2 Tôn Đức Thắng,\n Phường Sài Gòn, TP HCM, Việt Nam",
     "HeroSection": {
-      "title": "Định vị Ai+Di là nền tảng AI nhân văn.",
-      "sub_title": "Không thay thế.",
-      "description": "AI đồng hành cùng con người trong học tập, công việc và cuộc sống của người Việt.",
+      "title": "Reflects.",
+      "sub_title": "Not Replaces.",
+      "description": "Định vị Ai+Di là nền tảng AI nhân văn. AI đồng hành cùng con người trong học tập, công việc và cuộc sống của người Việt.",
       "button": "Tìm hiểu thêm"
     },
     "ValuesSection": {
@@ -31,7 +31,7 @@
       "life_rhythm": "Cuộc sống",
       "life_rhythm_desc": "Sống tỉnh thức cùng AI để cân bằng và nâng cao trải nghiệm mỗi ngày.",
       "organization_rhythm": "Tổ chức",
-      "organization_rhythm_desc": ": Đồng bộ hóa mục tiêu và hiệu năng cùng AI qua hệ thống vận hành thông minh."
+      "organization_rhythm_desc": "Đồng bộ hóa mục tiêu và hiệu năng cùng AI qua hệ thống vận hành thông minh."
     },
     "MissionVisionSection": {
       "mission": "Sứ mệnh",
@@ -56,7 +56,7 @@
     },
     "CoreValues": {
       "title": "Giá trị cốt lõi",
-      "description": "Nếu “Niềm tin” là gốc rễ của văn hoá Ai+Di, thì năm giá trị còn lại là thân cây và tán lá – những phần giúp nuôi dưỡng, che chở và lan toả niềm tin đó. Tất cả hợp lại thành “ADN đạo đức” của Ai+Di, định hình cách chúng ta suy nghĩ, hành xử và quyết định mỗi ngày. Chính trực tạo nền tảng, Nhân văn tạo định hướng, Đồng hành tạo sức mạnh, Đổi mới tạo sinh khí, Tinh gọn tạo hiệu quả – và tất cả cùng nuôi dưỡng Niềm tin."
+      "description": "Nếu “Niềm tin” là gốc rễ của văn hoá Ai+Di, thì năm giá trị còn lại là thân cây và tán lá – những phần giúp nuôi dưỡng, che chở và lan toả niềm tin đó. Tất cả hợp lại thành “ADN đạo đức” của Ai+Di, định hình cách chúng ta suy nghĩ, hành xử và quyết định mỗi ngày.\nChính trực tạo nền tảng, Nhân văn tạo định hướng, Đồng hành tạo sức mạnh, Đổi mới tạo sinh khí, Tinh gọn tạo hiệu quả – và tất cả cùng nuôi dưỡng Niềm tin."
     },
     "OurTeam": {
       "title": "Ban lãnh đạo",
@@ -81,6 +81,7 @@
     "view_more": "xem thêm",
     "article_not_found": "Bài viết không tìm thấy",
     "back_to_blog": "Quay lại blog",
-    "related_topic": "Bai viết liên quan"
+    "related_topic": "Bài viết liên quan",
+    "blog_not_exist": "Không tìm thấy bài viết"
   }
 }
