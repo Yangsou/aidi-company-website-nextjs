@@ -25,7 +25,7 @@ export default function Footer() {
     },
     {
       key: 'academy',
-      title: '  ',
+      title: '',
       content: t('academy_desc'),
       address: t('academy_address'),
       tax: '0319129022',
@@ -39,19 +39,21 @@ export default function Footer() {
           {data.map((item) => (
             <div
               key={item.key}
-              className="col-span-12 lg:col-span-3"
+              className="col-span-12 flex flex-col justify-between lg:col-span-3"
             >
               <div className="min-h-[30px] align-middle font-[Manrope] text-[20px] font-bold leading-[150%] tracking-[0%] text-[#EEEEEE]">
                 {item.title}
               </div>
-              <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-[18px] font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                {item.content}
+              <div className="flex-1">
+                <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-[18px] font-semibold leading-[150%] tracking-[0%] text-[#EEEEEE]">
+                  {item.content}
+                </div>
+                <p className="mt-2 whitespace-pre-line font-[Manrope] text-sm font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
+                  {item.address}
+                </p>
               </div>
-              <p className="mt-2 whitespace-pre-line font-[Manrope] text-sm font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                {item.address}
-              </p>
               <p className="mt-2 font-[Manrope] text-sm font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                MST: {item.tax}
+                <span className="font-bold">MST:</span> {item.tax}
               </p>
             </div>
           ))}
