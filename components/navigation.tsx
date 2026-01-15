@@ -75,15 +75,18 @@ export default function Navigation() {
               >
                 <motion.div
                   className={cn(
-                    'font-manrope h-full px-6 align-middle text-lg font-normal leading-[64px] tracking-[0%] transition-all',
-                    'hover:bg-[#A0DCDD] hover:font-semibold hover:text-[#0036AF]',
+                    'font-manrope group relative h-full px-6 align-middle text-lg font-normal leading-[64px] tracking-[0%] transition-all',
+                    'hover:font-semibolds hover:bg-[#A0DCDD] hover:text-[#0036AF]',
                     {
                       'text-xl font-semibold leading-[64px] text-[#0036AF]': isActive(item.href),
                       'text-[#626262]': !isActive(item.href),
                     }
                   )}
                 >
-                  {item.name}
+                  <span className="group-hover:opacity-0">{item.name}</span>
+                  <span className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center font-semibold text-[#0036AF] opacity-0 group-hover:opacity-100">
+                    {item.name}
+                  </span>
                 </motion.div>
               </Link>
             ))}

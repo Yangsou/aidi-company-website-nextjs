@@ -45,7 +45,7 @@ export default function Footer() {
                 {item.title}
               </div>
               <div className="flex-1">
-                <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-lg font-semibold leading-[150%] tracking-[0%] text-[#EEEEEE]">
+                <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-lg font-bold leading-[150%] tracking-[0%] text-[#EEEEEE]">
                   {item.content}
                 </div>
                 <p className="mt-2 whitespace-pre-line font-[Manrope] text-base font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
