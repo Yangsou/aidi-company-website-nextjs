@@ -40,16 +40,16 @@ export default function ValuesSection() {
   return (
     <section className="container relative">
       <div className="relative">
-        <div className="absolute left-1/2 top-[-60px] w-full -translate-x-1/2 bg-white shadow-2xl md:top-[-150px]">
+        <div className="w-full bg-white shadow-2xl md:absolute md:left-1/2 md:top-[-150px] md:-translate-x-1/2 lg:top-[-150px]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid h-full grid-cols-12 gap-8 p-4"
+            className="mt-12 h-full grid-cols-12 gap-8 p-4 md:mt-0 md:grid"
           >
             <div
-              className="relative col-span-12 h-full w-full md:col-span-6"
+              className="relative col-span-12 h-[calc(100vw_-_32px)] w-full md:col-span-6 md:h-full"
               style={{
                 background: 'linear-gradient(180deg, #0036AF 0%, #001749 100%)',
               }}
@@ -88,7 +88,7 @@ export default function ValuesSection() {
             </div>
           </motion.div>
         </div>
-        <div className="pb-16 pt-[500px] md:pt-[450px] lg:pt-[400px]">
+        <div className="pb-16 pt-12 md:pt-[700px] lg:pt-[560px] xl:pt-[440px]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
