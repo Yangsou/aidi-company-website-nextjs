@@ -88,7 +88,7 @@ export default function ValuesSection() {
             </div>
           </motion.div>
         </div>
-        <div className="pb-16 pt-12 md:pt-[700px] lg:pt-[560px] xl:pt-[440px]">
+        <div className="pb-16 pt-12 md:pt-[700px] lg:pt-[560px] xl:pt-[440px] 2xl:pt-[400px]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
