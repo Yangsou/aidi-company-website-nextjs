@@ -39,7 +39,7 @@ export default function ArticleItem({ article }: { article: Article }) {
       className="col-span-12 flex flex-col gap-4 bg-white shadow-sm hover:shadow-md md:col-span-6 lg:col-span-4"
     >
       {/* Image */}
-      <AspectRatio ratio={16 / 9}>
+      <AspectRatio ratio={9 / 6}>
         <Image
           src={coverUrl ?? '/blog/blog-banner-image.svg'}
           alt={title}

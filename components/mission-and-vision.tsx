@@ -47,7 +47,7 @@ export default function MissionAndVision() {
               <div className="font-[Manrope] text-[42px] font-semibold leading-[110%] tracking-normal text-[#0036AF]">
                 {t('vision')}
               </div>
-              <p className="w-auto align-middle font-[Manrope] text-[20px] font-normal leading-[150%] tracking-normal text-[#202222] lg:w-[486px]">
+              <p className="w-auto align-middle font-[Manrope] text-[20px] font-normal leading-[150%] tracking-normal text-[#202222] lg:w-[420px]">
                 {t('vision_desc')}
               </p>
             </div>
