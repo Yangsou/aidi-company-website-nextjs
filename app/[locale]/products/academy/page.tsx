@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 
 import PdtAcademyView from '@/components/pdt-academy/pdt-academy-view'
+import { getCurrentDomain } from '@/lib/env'
 
 import type { Metadata } from 'next'
 
@@ -22,6 +23,7 @@ export async function generateMetadata({
       description,
       images: ['/product/pdt-aca-banner-hero.png'],
       locale,
+      url: `${getCurrentDomain()}/${locale}/products/academy`,
     },
   }
 }
