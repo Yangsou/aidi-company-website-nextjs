@@ -1,6 +1,8 @@
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
+import { Link } from '@/i18n/navigation'
+
 import { Button } from '../ui/button'
 
 export default function PdtAcademyPartners() {
@@ -49,10 +51,13 @@ export default function PdtAcademyPartners() {
           </p>
           <Button
             size="lg"
+            asChild
             className="font-spaceGrotesk group h-[64px] rounded-none border-0 bg-[#6DC9CB] px-[30px] align-middle font-[Manrope] text-[18px] font-semibold leading-[150%] tracking-[0%] text-white transition-all duration-300 hover:bg-[#A0DCDD] hover:shadow-cyan-500/25 [&_svg]:size-6"
           >
-            {t('contact_us')}
-            <ArrowRight className="ml-[10px] h-5 w-5" />
+            <Link href="/products/academy/contact">
+              {t('contact_us')}
+              <ArrowRight className="ml-[10px] h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>

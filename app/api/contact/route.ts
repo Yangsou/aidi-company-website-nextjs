@@ -12,8 +12,8 @@ const contactSchema = z.object({
   lastname: z.string().min(1),
   email: z.string().email(),
   phoneNumber: z.string().min(1),
-  subject: z.string().min(1),
-  message: z.string().min(1),
+  country: z.string().min(1),
+  expectedTime: z.string().min(1),
 })
 
 export async function POST(request: NextRequest) {
@@ -25,8 +25,8 @@ export async function POST(request: NextRequest) {
       lastname: rawBody.lastname,
       email: rawBody.email,
       phoneNumber: rawBody.phone_number ?? rawBody.phoneNumber,
-      subject: rawBody.subject,
-      message: rawBody.message,
+      country: rawBody.country,
+      expectedTime: rawBody.expectedTime,
     })
 
     if (!parsedBody.success) {
@@ -36,16 +36,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { firstname, lastname, email, phoneNumber, subject, message } = parsedBody.data
+    const { firstname, lastname, email, phoneNumber, country, expectedTime } = parsedBody.data
 
     const data = JSON.stringify({
       data: {
         firstname,
         lastname,
         email,
-        phone_number: phoneNumber,
-        subject,
-        message,
+        phoneNumber,
+        country,
+        expectedTime,
       },
     })
 
