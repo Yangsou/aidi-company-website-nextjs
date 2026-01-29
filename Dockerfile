@@ -28,4 +28,6 @@ USER nextuser
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "node node_modules/next/dist/bin/next start -p $PORT -H 0.0.0.0"]
+#CMD ["sh", "-c", "node node_modules/next/dist/bin/next start -p $PORT -H 0.0.0.0"]
+
+CMD ["node", ".next/standalone/server.js"]
