@@ -6,7 +6,7 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 # Install build tools and enable pnpm
-RUN apk add --no-cache python3 make g++ && \
+RUN apk add --no-cache python3 make g++ vips-dev && \
     corepack enable && corepack prepare pnpm@latest --activate
 
 # Copy dependency manifests
@@ -35,6 +35,6 @@ USER nextuser
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "node node_modules/next/dist/bin/next start -p $PORT -H 0.0.0.0"]
+#CMD ["sh", "-c", "node node_modules/next/dist/bin/next start -p $PORT -H 0.0.0.0"]
 
-#CMD ["node", "server.js"]
+CMD ["node", ".next/standalone/server.js"]
