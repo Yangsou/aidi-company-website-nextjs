@@ -24,10 +24,17 @@ RUN addgroup -S nodejs && adduser -S nextuser -G nodejs
 
 RUN chown -R nextuser:nodejs /app
 
+# Entry script that replaces placeholders with env vars
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Use our entrypoint (replace the one from Application base image)
+ENTRYPOINT ["/entrypoint.sh"]
+
 USER nextuser
 
 EXPOSE 3000
 
-#CMD ["sh", "-c", "node node_modules/next/dist/bin/next start -p $PORT -H 0.0.0.0"]
+CMD ["sh", "-c", "node node_modules/next/dist/bin/next start -p $PORT -H 0.0.0.0"]
 
-CMD ["node", ".next/standalone/server.js"]
+#CMD ["node", "server.js"]
