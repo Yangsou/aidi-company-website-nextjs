@@ -1,4 +1,5 @@
 'use client'
+import { Mail } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import { Link } from '@/i18n/navigation'
@@ -57,39 +58,49 @@ export default function Footer() {
               </p>
             </div>
           ))}
-          <div className="align-start col-span-12 flex justify-start gap-8 lg:col-span-3 lg:justify-end">
-            <Link
-              href="https://www.facebook.com/aidijsc"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="aidijsc"
+          <div className="align-start col-span-12 flex flex-col justify-start gap-4 lg:col-span-3 lg:items-end lg:self-start">
+            <div className="flex gap-8">
+              <Link
+                href="https://www.facebook.com/aidijsc"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="aidijsc"
+              >
+                <FacebookIcon />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/company/ai-di-world/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ai-di-world"
+              >
+                <LinkedInIcon />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@AiplusDiJSC"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="AiplusDiJSC"
+              >
+                <YouTubeIcon />
+              </Link>
+              <Link
+                href="https://www.tiktok.com/@aidiworld"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="aidiworld"
+              >
+                <TikTokIcon />
+              </Link>
+            </div>
+            <a
+              href={`mailto:${t('contact_email')}`}
+              className="flex items-center gap-2 font-[Manrope] text-base font-normal leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-90"
+              aria-label={t('contact_email')}
             >
-              <FacebookIcon />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/company/ai-di-world/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="ai-di-world"
-            >
-              <LinkedInIcon />
-            </Link>
-            <Link
-              href="https://www.youtube.com/@AiplusDiJSC"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="AiplusDiJSC"
-            >
-              <YouTubeIcon />
-            </Link>
-            <Link
-              href="https://www.tiktok.com/@aidiworld"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="aidiworld"
-            >
-              <TikTokIcon />
-            </Link>
+              <Mail className="h-5 w-5 shrink-0" />
+              <span>{t('contact_email')}</span>
+            </a>
           </div>
           <div className="col-span-12 mt-16 flex w-full flex-col items-center justify-between gap-4 border-b-2 border-[#EEEEEE] pb-4 lg:flex-row">
             <div className="flex items-end justify-start gap-4">

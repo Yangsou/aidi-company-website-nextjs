@@ -1,5 +1,32 @@
 import { useTranslations } from 'next-intl'
 
+function Items() {
+  return (
+    <>
+      <img
+        src="/home/logo-auhs.png"
+        alt="AI+DI Logo"
+        className="h-[112px] w-[152px] object-contain"
+      />
+      <img
+        src="/home/logo-uni-brid.png"
+        alt="AI+DI Logo"
+        className="h-[68px] w-[380px] object-contain"
+      />
+      <img
+        src="/home/logo-mcp-hs.png"
+        alt="AI+DI Logo"
+        className="h-[73px] w-[225px] object-contain"
+      />
+      <img
+        src="/home/logo-antioch-uni.png"
+        alt="AI+DI Logo"
+        className="h-[48px] w-[385px] object-contain"
+      />
+    </>
+  )
+}
+
 export default function OurPartners() {
   const t = useTranslations('HomePage.PartnerSection')
 
@@ -13,43 +40,11 @@ export default function OurPartners() {
           {t('our_partners_desc')}
         </div> */}
       </div>
-      <div className="relative flex justify-center bg-[#0036AF] pb-28 pt-12">
-        <div className="container grid grid-cols-12 gap-[20px] text-[#0036AF] md:gap-[40px]">
-          <div className="col-span-12 flex justify-center bg-white p-[20px] md:col-span-4">
-            <img
-              src="home/logo-nbc.png"
-              alt="AI+DI Logo"
-              className="h-[120px] object-contain"
-            />
-          </div>
-          <div className="col-span-12 flex justify-center bg-white p-[20px] md:col-span-4">
-            <img
-              src="home/logo-auhs.png"
-              alt="AI+DI Logo"
-              className="h-[120px] object-contain"
-            />
-          </div>
-          <div className="col-span-12 flex justify-center bg-white p-[20px] md:col-span-4">
-            <img
-              src="home/logo-uni-brid.png"
-              alt="AI+DI Logo"
-              className="h-[120px] object-contain"
-            />
-          </div>
-          <div className="col-span-12 flex justify-center bg-white p-[20px] md:col-span-6">
-            <img
-              src="home/logo-mcp-hs.png"
-              alt="AI+DI Logo"
-              className="h-[120px] object-contain"
-            />
-          </div>
-          <div className="col-span-12 flex justify-center bg-white p-[20px] md:col-span-6">
-            <img
-              src="home/logo-antioch-uni.png"
-              alt="AI+DI Logo"
-              className="h-[120px] object-contain"
-            />
-          </div>
+      <div className="container relative my-6 h-[160px] w-full overflow-x-hidden">
+        <div className="absolute left-0 flex h-full w-max animate-marquee-infinite items-center gap-[20px] md:gap-[40px]">
+          <Items />
+          <Items />
+          <Items />
         </div>
       </div>
     </section>
