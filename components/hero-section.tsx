@@ -60,7 +60,7 @@ export default function HeroSection() {
             </span>
             {/* <br /> */}
             <span className="font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#202222] md:text-[70px]">
-              {t('HeroSection.sub_title')}
+              {t('HeroSection.sub_title')}{' '}
             </span>
           </motion.h1>
 
