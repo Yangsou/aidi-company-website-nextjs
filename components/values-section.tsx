@@ -1,46 +1,83 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 
-import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Link } from '@/i18n/navigation'
+
+const MD_BREAKPOINT = 768
 
 export default function ValuesSection() {
   const t = useTranslations('HomePage.ValuesSection')
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < MD_BREAKPOINT)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   const features = [
     {
-      icon: '/home/values-learning.png',
+      iconBase: '/home/ai-companion.jpg',
       title: t('learning_rhythm'),
       description: t('learning_rhythm_desc'),
       gradient: 'from-pink-500 to-rose-600',
     },
     {
-      icon: '/home/values-working.png',
+      iconBase: '/home/aidi-academy.jpg',
       title: t('working_rhythm'),
       description: t('working_rhythm_desc'),
       gradient: 'from-cyan-500 to-blue-600',
     },
     {
-      icon: '/home/values-life.png',
+      iconBase: '/home/ai-educational-organizations.png',
       title: t('life_rhythm'),
       description: t('life_rhythm_desc'),
       gradient: 'from-purple-500 to-indigo-600',
     },
     {
-      icon: '/home/values-organization.png',
+      iconBase: '/home/ai-businesses.jpg',
       title: t('organization_rhythm'),
       description: t('organization_rhythm_desc'),
       gradient: 'from-purple-500 to-indigo-600',
     },
   ]
+
+  const getImageSrc = (iconBase: string) => {
+    // Luôn dùng cùng một ảnh, không đổi khi hover
+    return `${iconBase}`
+  }
+
+  const getFlexValue = (index: number) => {
+    if (isMobile) return 1
+    if (hoveredIndex === null) return 1
+    if (hoveredIndex === index) return 2.2
+    return 0.6
+  }
+
+  const springTransition = {
+    type: 'spring' as const,
+    stiffness: 140,
+    damping: 28,
+    mass: 1,
+  }
+  const overlayTransition = {
+    duration: 0.55,
+    ease: [0.22, 0.61, 0.36, 1] as const,
+  }
+  const descriptionTransition = {
+    duration: 0.45,
+    ease: [0.33, 0.66, 0.2, 1] as const,
+  }
   return (
     <section className="container relative">
       <div className="relative">
-        <div className="w-full bg-white shadow-2xl md:absolute md:left-1/2 md:top-[-150px] md:-translate-x-1/2 lg:top-[-150px]">
+        <div className="w-full bg-[#F7F9FD] shadow-2xl md:absolute md:left-1/2 md:top-[-150px] md:-translate-x-1/2 lg:top-[-150px]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -49,28 +86,31 @@ export default function ValuesSection() {
             className="mt-12 h-full grid-cols-12 gap-8 p-4 md:mt-0 md:grid"
           >
             <div
-              className="relative col-span-12 h-[calc(100vw_-_32px)] w-full md:col-span-6 md:h-full"
+              className="relative col-span-12 flex h-[calc(100vw_-_32px)] w-full items-center justify-center md:col-span-8 md:h-full"
               style={{
-                background: 'linear-gradient(180deg, #0036AF 0%, #001749 100%)',
+                background: '#0036AF',
+                height: '420px',
               }}
             >
-              <Image
-                src="/home/human-of-light.png"
-                alt="AI and human connection"
-                fill
-                className="z-10 object-cover object-top"
-                priority
-              />
+              <div className="relative aspect-video w-[200px]">
+                <Image
+                  src="/home/button-play-media.png"
+                  alt="AI and human connection"
+                  fill
+                  className="z-10 object-contain"
+                  priority
+                />
+              </div>
             </div>
-            <div className="align-center col-span-12 flex flex-col justify-center gap-4 px-0 pt-6 md:col-span-6 md:px-4 md:pr-8">
-              <motion.p className="font-[Manrope] text-4xl font-semibold tracking-[0%] text-[#0036AF] md:text-[42px]">
+            <div className="align-center col-span-12 flex flex-col justify-center gap-4 px-0 pt-6 md:col-span-4 md:px-4 md:pr-8">
+              {/* <motion.p className="font-[Manrope] text-4xl font-semibold tracking-[0%] text-[#0036AF] md:text-[42px]">
                 {t('what_we_do')}
-              </motion.p>
+              </motion.p> */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="whitespace-break-spaces align-middle font-[Manrope] text-[14px] font-normal leading-[150%] tracking-[0%] text-[#525757] md:text-[20px]"
+                className="whitespace-break-spaces align-middle font-[Manrope] text-[14px] font-normal leading-[150%] tracking-[0%] text-[#525757] md:text-[28px]"
               >
                 <p
                   dangerouslySetInnerHTML={{
@@ -80,7 +120,7 @@ export default function ValuesSection() {
                   }}
                 />
               </motion.div>
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
@@ -95,11 +135,11 @@ export default function ValuesSection() {
                     <ArrowRight className="ml-[10px] h-5 w-5" />
                   </Button>
                 </Link>
-              </motion.div>
+              </motion.div> */}
             </div>
           </motion.div>
         </div>
-        <div className="pb-12 pt-12 md:pt-[520px] lg:pt-[400px] xl:pt-[380px] 2xl:pt-[320px]">
+        <div className="bg-[white] pb-12 pt-12 md:pt-[520px] lg:pt-[400px] xl:pt-[380px] 2xl:pt-[320px]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -112,53 +152,68 @@ export default function ValuesSection() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="flex min-h-[320px] flex-col gap-4 md:min-h-[380px] md:flex-row md:gap-0">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                // whileHover={{ y: -10 }}
+                onMouseEnter={() => !isMobile && setHoveredIndex(index)}
+                onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+                className="flex min-w-0 md:flex-1 md:cursor-pointer"
+                animate={{ flex: getFlexValue(index) }}
+                transition={springTransition}
               >
-                <Card className="group h-full rounded-none border-none shadow-none hover:shadow-[10px_10px_2px_0_#A0DCDD]">
-                  <CardContent className="p-0 text-center shadow-none">
-                    <motion.div className="relative mx-auto flex h-[320px] items-center justify-start">
+                <Card className="duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group h-full w-full min-w-0 overflow-hidden rounded-none border-none shadow-none transition-all">
+                  <CardContent className="flex h-full flex-col p-0 shadow-none">
+                    <div className="relative aspect-video min-h-[200px] w-full min-w-0 overflow-hidden md:aspect-auto md:min-h-[320px] md:flex-1">
                       <Image
-                        src="/home/values-bg.svg"
-                        alt="AI and human connection"
-                        className="z-10 object-cover object-center"
+                        src={getImageSrc(feature.iconBase)}
+                        alt={feature.title}
                         fill
-                        priority
+                        className="duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] object-cover object-center transition-all"
+                        priority={index === 0}
+                        sizes="(max-width: 660px) 100vw, 25vw"
                       />
-                      <div className="absolute z-20 flex h-full w-full flex-col items-center justify-end pb-[20px]">
-                        <Image
-                          src={feature.icon}
-                          alt="AI and human connection"
-                          className="z-10 object-cover object-center"
-                          priority
-                          fill
-                        />
-                        {/* <Image
-                          width={277}
-                          height={66}
-                          src="/home/footer-values.svg"
-                          alt="AI and human connection"
-                          className="z-10 object-cover object-center"
-                          priority
-                        /> */}
+                      {/* Blue overlay khi hover - animate mượt */}
+                      <motion.div
+                        className="absolute inset-0 bg-[#0036AF]"
+                        initial={false}
+                        animate={{
+                          opacity: !isMobile && hoveredIndex === index ? 0.35 : 0,
+                        }}
+                        transition={overlayTransition}
+                        aria-hidden
+                      />
+                      {/* Gradient phía dưới để text dễ đọc - ẩn trên mobile để full hình */}
+                      <div
+                        className="absolute inset-0 hidden bg-gradient-to-t from-black/70 via-black/20 to-transparent md:block"
+                        aria-hidden
+                      />
+                      {/* Title - góc trên trái, luôn hiển thị; mobile: đủ padding để không bị cắt */}
+                      <div className="absolute left-0 right-0 top-0 flex w-full max-w-full px-4 py-4 md:right-auto md:w-auto md:px-5 md:py-5">
+                        <h3 className="max-w-full break-words font-[Manrope] text-[18px] font-semibold leading-[120%] tracking-[2%] text-white drop-shadow-md md:text-[20px]">
+                          {feature.title}
+                        </h3>
                       </div>
-                    </motion.div>
-
-                    <div className="h-[206px] bg-[#F7F9FD] p-[20px] text-left">
-                      <h3 className="mb-4 align-middle font-[Manrope] text-[24px] font-semibold leading-[120%] tracking-[2%] text-[#202222]">
-                        {feature.title}
-                      </h3>
-
-                      <p className="align-middle font-[Manrope] text-[18px] font-normal leading-[150%] tracking-[0%] text-[#626262]">
-                        {feature.description}
-                      </p>
+                      {/* Description - góc dưới; mobile: luôn hiện đủ, desktop: hiện khi hover */}
+                      <div className="absolute bottom-0 left-0 right-0 flex w-full max-w-full flex-col px-4 py-4 md:px-5 md:py-5">
+                        <AnimatePresence mode="wait">
+                          {isMobile || hoveredIndex === index ? (
+                            <motion.p
+                              key={`desc-${index}`}
+                              initial={!isMobile ? { opacity: 0, y: 10 } : false}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 5 }}
+                              transition={descriptionTransition}
+                              className="max-w-full break-words font-[Manrope] text-[14px] font-normal leading-[150%] text-white/95 md:text-[15px]"
+                            >
+                              {feature.description}
+                            </motion.p>
+                          ) : null}
+                        </AnimatePresence>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

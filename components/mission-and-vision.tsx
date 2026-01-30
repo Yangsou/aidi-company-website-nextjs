@@ -24,10 +24,10 @@ export default function MissionAndVision() {
           <div className="container grid h-full grid-cols-12 py-4 lg:py-32">
             <div className="relative col-span-12 flex flex-col gap-4 lg:col-span-6">
               <Image
-                src="/home/mission-image.png"
+                src="/home/mission-image-new.png"
                 alt="AI and human connection"
-                width={162}
-                height={165}
+                width={117}
+                height={119}
               />
               <div className="font-[Manrope] text-[42px] font-semibold leading-[110%] tracking-normal text-[#0036AF] lg:text-[#FFFFFF]">
                 {t('mission')}
@@ -39,10 +39,10 @@ export default function MissionAndVision() {
 
             <div className="relative col-span-12 flex flex-col items-start gap-4 text-left lg:col-span-6 lg:items-end lg:text-right">
               <Image
-                src="/home/vision-image.svg"
+                src="/home/vision-image-new.png"
                 alt="AI and human connection"
-                width={162}
-                height={165}
+                width={104}
+                height={106}
               />
               <div className="font-[Manrope] text-[42px] font-semibold leading-[110%] tracking-normal text-[#0036AF]">
                 {t('vision')}

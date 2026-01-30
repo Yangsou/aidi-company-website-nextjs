@@ -80,13 +80,13 @@ function MaskImage() {
         height={44}
         className="absolute left-1/2 top-0 z-10 h-auto w-auto -translate-x-1/2"
       />
-      <Image
+      {/* <Image
         src="/home/mask-activities.svg"
         alt="Mask Decoration"
         width={400}
         height={44}
         className="absolute left-1/2 top-0 z-10 h-auto w-auto -translate-x-1/2 -translate-y-full rotate-180"
-      />
+      /> */}
     </>
   )
 }
@@ -121,7 +121,7 @@ export default function OurActivitys() {
         <MaskImage />
         <div className="gap-4 py-12">
           <div className="text-center font-[Manrope] text-[56px] font-bold leading-[110%] tracking-[0%] text-[#202222]">
-            {t('our_activities')}
+            {/* {t('our_activities')} */}
           </div>
           <div className="flex items-center justify-center py-12">
             <p className="text-[#525757]">{t('our_activities_loading')}</p>
@@ -137,7 +137,7 @@ export default function OurActivitys() {
         <MaskImage />
         <div className="gap-4 py-12">
           <div className="text-center font-[Manrope] text-[56px] font-bold leading-[110%] tracking-[0%] text-[#202222]">
-            {t('our_activities')}
+            {/* {t('our_activities')} */}
           </div>
           <div className="flex items-center justify-center py-12">
             <p className="text-red-500">{error}</p>
@@ -154,7 +154,7 @@ export default function OurActivitys() {
       <MaskImage />
       <div className="container relative z-10 gap-4 space-y-3 py-12">
         <div className="text-center font-[Manrope] text-4xl font-bold leading-[110%] tracking-[0%] text-[#202222] md:text-[56px]">
-          {t('our_activities')}
+          {/* {t('our_activities')} */}
         </div>
         {/* <div className="font-regular mx-auto mt-2 max-w-[730px] text-center align-middle font-[Manrope] text-lg leading-[150%] tracking-[0%] text-[#525757] md:text-[20px]">
           {t('our_activities_desc')}

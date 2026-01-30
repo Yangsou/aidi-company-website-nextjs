@@ -20,15 +20,15 @@ export default function HeroSection() {
           src="/home/bg-hero-section.png"
           alt="AI and human connection"
           fill
-          className="z-10 mt-16 object-cover object-center opacity-20"
+          className="z-10 mt-16 object-cover object-center opacity-100"
           priority
         />
         {/* Dark overlay for better text readability */}
         <div
           className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(180deg, #0036AF 0%, #001749 100%)',
-          }}
+          // style={{
+          //   background: 'linear-gradient(180deg, #0036AF 0%, #001749 100%)',
+          // }}
         />
       </div>
 
@@ -55,11 +55,11 @@ export default function HeroSection() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-6 text-5xl font-bold leading-tight md:text-7xl lg:text-8xl"
           >
-            <span className="font-[Manrope] text-[40px] font-extrabold leading-[110%] tracking-[-2%] text-[#FFFFFF] md:text-[96px]">
+            <span className="font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#0036AF] md:text-[70px]">
               {t('HeroSection.title')}
             </span>
-            <br />
-            <span className="font-[Manrope] text-[40px] font-extrabold leading-[110%] tracking-[-2%] text-[#A0DCDD] md:text-[96px]">
+            {/* <br /> */}
+            <span className="font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#202222] md:text-[70px]">
               {t('HeroSection.sub_title')}
             </span>
           </motion.h1>
@@ -68,7 +68,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="font-manrope max-w-[732px] whitespace-break-spaces text-[24px] font-normal leading-[140%] tracking-[0%]"
+            className="font-manrope max-w-[732px] whitespace-break-spaces text-[20px] font-normal leading-[140%] tracking-[0%] text-[#202222]"
           >
             {t('HeroSection.description')}
           </motion.p>
