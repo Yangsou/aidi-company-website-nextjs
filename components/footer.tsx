@@ -36,20 +36,20 @@ export default function Footer() {
   return (
     <footer className="flex justify-center bg-[#0036AF] py-16">
       <div className="container">
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-7">
           {data.map((item) => (
             <div
               key={item.key}
               className="col-span-12 flex flex-col justify-between lg:col-span-3"
             >
-              <div className="min-h-[36px] align-middle font-[Manrope] text-2xl font-bold leading-[150%] tracking-[0%] text-[#EEEEEE]">
+              <div className="min-h-[36px] align-middle font-[Manrope] text-2xl font-bold leading-[150%] tracking-[0] text-[#EEEEEE]">
                 {item.title}
               </div>
               <div className="flex-1">
-                <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-lg font-bold leading-[150%] tracking-[0%] text-[#EEEEEE]">
+                <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-lg font-bold leading-[150%] tracking-[0] text-[#EEEEEE]">
                   {item.content}
                 </div>
-                <p className="mt-2 whitespace-pre-line font-[Manrope] text-base font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
+                <p className="mt-2 whitespace-pre-line font-[Manrope] text-base font-normal leading-[150%] tracking-[0] text-[#EEEEEE]">
                   {item.address}
                 </p>
               </div>
@@ -58,8 +58,8 @@ export default function Footer() {
               </p>
             </div>
           ))}
-          <div className="align-start col-span-12 flex flex-col justify-start gap-4 lg:col-span-3 lg:items-end lg:self-start">
-            <div className="flex gap-8">
+          <div className="col-span-12 flex flex-col justify-between lg:col-span-3">
+            <div className="flex w-full justify-start gap-8 lg:justify-end">
               <Link
                 href="https://www.facebook.com/aidijsc"
                 target="_blank"
@@ -93,16 +93,12 @@ export default function Footer() {
                 <TikTokIcon />
               </Link>
             </div>
-            <a
-              href={`mailto:${t('contact_email')}`}
-              className="flex items-center gap-2 font-[Manrope] text-base font-normal leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-90"
-              aria-label={t('contact_email')}
-            >
-              <Mail className="h-5 w-5 shrink-0" />
-              <span>{t('contact_email')}</span>
-            </a>
+            <p className="mt-2 text-right font-[Manrope] text-base font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
+              <Mail className="mr-2 inline" />
+              <Link href="mailto:contact@aidi.world">contact@aidi.world</Link>
+            </p>
           </div>
-          <div className="col-span-12 mt-16 flex w-full flex-col items-center justify-between gap-4 border-b-2 border-[#EEEEEE] pb-4 lg:flex-row">
+          <div className="col-span-12 mt-16 flex w-full flex-col items-center justify-between gap-4 border-b-[1px] border-[#EEEEEE] pb-4 lg:flex-row">
             <div className="flex items-end justify-start gap-4">
               <img
                 src="/footer/logo-footer.svg"
@@ -113,7 +109,7 @@ export default function Footer() {
                 Reflect, Not Replace
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="hidden gap-4">
               <Link href="/">
                 <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
                   {t('home')}

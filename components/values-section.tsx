@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
@@ -23,38 +23,34 @@ export default function ValuesSection() {
 
   const features = [
     {
-      iconBase: '/home/ai-companion-x2',
+      iconBase: '/home/ai-companion.jpg',
       title: t('learning_rhythm'),
       description: t('learning_rhythm_desc'),
       gradient: 'from-pink-500 to-rose-600',
     },
     {
-      iconBase: '/home/aidi-academy-x2',
+      iconBase: '/home/aidi-academy.jpg',
       title: t('working_rhythm'),
       description: t('working_rhythm_desc'),
       gradient: 'from-cyan-500 to-blue-600',
     },
     {
-      iconBase: '/home/ai-educational-organizations-x2',
+      iconBase: '/home/ai-educational-organizations.png',
       title: t('life_rhythm'),
       description: t('life_rhythm_desc'),
       gradient: 'from-purple-500 to-indigo-600',
     },
     {
-      iconBase: '/home/ai-businesses-x2',
+      iconBase: '/home/ai-businesses.jpg',
       title: t('organization_rhythm'),
       description: t('organization_rhythm_desc'),
       gradient: 'from-purple-500 to-indigo-600',
     },
   ]
 
-  const getImageSrc = (iconBase: string, index: number) => {
-    // Mobile: luôn dùng 4 ảnh -hover.png, không hiệu ứng hover
-    if (isMobile) return `${iconBase}-hover.png`
-    // Desktop: đổi ảnh theo hover
-    if (hoveredIndex === null) return `${iconBase}.png`
-    if (hoveredIndex === index) return `${iconBase}-hover.png`
-    return `${iconBase}-not-hover.png`
+  const getImageSrc = (iconBase: string) => {
+    // Luôn dùng cùng một ảnh, không đổi khi hover
+    return `${iconBase}`
   }
 
   const getFlexValue = (index: number) => {
@@ -62,6 +58,21 @@ export default function ValuesSection() {
     if (hoveredIndex === null) return 1
     if (hoveredIndex === index) return 2.2
     return 0.6
+  }
+
+  const springTransition = {
+    type: 'spring' as const,
+    stiffness: 140,
+    damping: 28,
+    mass: 1,
+  }
+  const overlayTransition = {
+    duration: 0.55,
+    ease: [0.22, 0.61, 0.36, 1] as const,
+  }
+  const descriptionTransition = {
+    duration: 0.45,
+    ease: [0.33, 0.66, 0.2, 1] as const,
   }
   return (
     <section className="container relative">
@@ -152,35 +163,56 @@ export default function ValuesSection() {
                 onMouseLeave={() => !isMobile && setHoveredIndex(null)}
                 className="flex min-w-0 md:flex-1 md:cursor-pointer"
                 animate={{ flex: getFlexValue(index) }}
-                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                transition={springTransition}
               >
-                <Card className="group h-full w-full overflow-hidden rounded-none border-none shadow-none transition-all duration-300">
+                <Card className="duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group h-full w-full min-w-0 overflow-hidden rounded-none border-none shadow-none transition-all">
                   <CardContent className="flex h-full flex-col p-0 shadow-none">
-                    <div className="relative aspect-video min-h-[200px] w-full overflow-hidden md:aspect-auto md:min-h-[320px] md:flex-1">
+                    <div className="relative aspect-video min-h-[200px] w-full min-w-0 overflow-hidden md:aspect-auto md:min-h-[320px] md:flex-1">
                       <Image
-                        src={getImageSrc(feature.iconBase, index)}
+                        src={getImageSrc(feature.iconBase)}
                         alt={feature.title}
                         fill
-                        className="object-contain object-center transition-opacity duration-300 md:object-cover"
+                        className="duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] object-cover object-center transition-all"
                         priority={index === 0}
                         sizes="(max-width: 660px) 100vw, 25vw"
                       />
-                      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/40" /> */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white md:p-5">
-                        {/* <h3 className="font-[Manrope] text-[18px] font-semibold leading-[120%] tracking-[2%] md:text-[20px]">
+                      {/* Blue overlay khi hover - animate mượt */}
+                      <motion.div
+                        className="absolute inset-0 bg-[#0036AF]"
+                        initial={false}
+                        animate={{
+                          opacity: !isMobile && hoveredIndex === index ? 0.35 : 0,
+                        }}
+                        transition={overlayTransition}
+                        aria-hidden
+                      />
+                      {/* Gradient phía dưới để text dễ đọc - ẩn trên mobile để full hình */}
+                      <div
+                        className="absolute inset-0 hidden bg-gradient-to-t from-black/70 via-black/20 to-transparent md:block"
+                        aria-hidden
+                      />
+                      {/* Title - góc trên trái, luôn hiển thị; mobile: đủ padding để không bị cắt */}
+                      <div className="absolute left-0 right-0 top-0 flex w-full max-w-full px-4 py-4 md:right-auto md:w-auto md:px-5 md:py-5">
+                        <h3 className="max-w-full break-words font-[Manrope] text-[18px] font-semibold leading-[120%] tracking-[2%] text-white drop-shadow-md md:text-[20px]">
                           {feature.title}
-                        </h3> */}
-                        {/* {hoveredIndex === index && (
+                        </h3>
+                      </div>
+                      {/* Description - góc dưới; mobile: luôn hiện đủ, desktop: hiện khi hover */}
+                      <div className="absolute bottom-0 left-0 right-0 flex w-full max-w-full flex-col px-4 py-4 md:px-5 md:py-5">
+                        <AnimatePresence mode="wait">
+                          {isMobile || hoveredIndex === index ? (
                             <motion.p
-                              initial={{ opacity: 1, height: 'auto' }}
-                              // animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              // transition={{ duration: 0.25 }}
-                              className="mt-2 font-[Manrope] text-[14px] font-normal leading-[150%] text-white/95 md:text-[15px]"
+                              key={`desc-${index}`}
+                              initial={!isMobile ? { opacity: 0, y: 10 } : false}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 5 }}
+                              transition={descriptionTransition}
+                              className="max-w-full break-words font-[Manrope] text-[14px] font-normal leading-[150%] text-white/95 md:text-[15px]"
                             >
                               {feature.description}
                             </motion.p>
-                          )} */}
+                          ) : null}
+                        </AnimatePresence>
                       </div>
                     </div>
                   </CardContent>

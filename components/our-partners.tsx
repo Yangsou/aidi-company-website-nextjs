@@ -4,9 +4,14 @@ function Items() {
   return (
     <>
       <img
+        src="/home/logo-nbcs.png"
+        alt="AI+DI Logo"
+        className="h-[69px] w-[131px] object-contain"
+      />
+      <img
         src="/home/logo-auhs.png"
         alt="AI+DI Logo"
-        className="h-[112px] w-[152px] object-contain"
+        className="h-[113px] w-[152px] object-contain"
       />
       <img
         src="/home/logo-uni-brid.png"
@@ -32,7 +37,7 @@ export default function OurPartners() {
 
   return (
     <section className="bg-white">
-      <div className="gap-4 py-12">
+      <div className="gap-4 pt-12">
         <div className="text-center font-[Manrope] text-[56px] font-bold leading-[110%] tracking-[0%] text-[#0036AF]">
           {t('our_partners')}
         </div>
