@@ -13,13 +13,14 @@ function Items() {
         alt="AI+DI Logo"
         className="h-[113px] w-[152px] object-contain"
       />
+
       <img
-        src="/home/logo-uni-brid.png"
+        src="/home/logo-mcp-hs.png"
         alt="AI+DI Logo"
         className="h-[68px] w-[380px] object-contain"
       />
       <img
-        src="/home/logo-mcp-hs.png"
+        src="/home/logo-uni-brid.png"
         alt="AI+DI Logo"
         className="h-[73px] w-[225px] object-contain"
       />

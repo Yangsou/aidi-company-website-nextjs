@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import { Link } from '@/i18n/navigation'
 // import { getCategoryReadTime } from '@/lib/blog-helpers'
-import { formatDateString } from '@/lib/utils'
+// import { formatDateString } from '@/lib/utils'
 
 import { AspectRatio } from './ui/aspect-ratio'
 import { Skeleton } from './ui/skeleton'
@@ -32,7 +32,8 @@ export function ArticelItemSkeleton({ count }: { count: number }) {
 }
 
 export default function ArticleItem({ article }: { article: Article }) {
-  const { title, slug, category, cover_url: coverUrl, publishedAt, date } = article
+  // const { title, slug, category, cover_url: coverUrl, publishedAt, date } = article
+  const { title, slug, category, cover_url: coverUrl } = article
   return (
     <Link
       href={`/blog/${slug ?? ''}`}
@@ -52,7 +53,7 @@ export default function ArticleItem({ article }: { article: Article }) {
       {/* Text */}
       <div className="p-4">
         {/* Category */}
-        <div className="font-manrope text-[18px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
+        <div className="font-manrope mb-4 text-[18px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
           {category?.name}
         </div>
 
@@ -66,9 +67,9 @@ export default function ArticleItem({ article }: { article: Article }) {
 
         {/* Meta info */}
         <div className="mt-4 flex items-center justify-between gap-12">
-          <div className="font-manrope text-[16px] font-normal leading-[150%] text-[#525757]">
+          {/* <div className="font-manrope text-[16px] font-normal leading-[150%] text-[#525757]">
             {formatDateString(date ? date : publishedAt)}
-          </div>
+          </div> */}
 
           <div className="font-manrope flex items-center gap-2 text-[16px] font-normal leading-[150%] text-[#525757]">
             {/* <div className="h-[13px] w-[13px] rounded-full bg-[#00C8B3]" />
