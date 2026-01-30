@@ -80,13 +80,13 @@ function MaskImage() {
         height={44}
         className="absolute left-1/2 top-0 z-10 h-auto w-auto -translate-x-1/2"
       />
-      <Image
+      {/* <Image
         src="/home/mask-activities.svg"
         alt="Mask Decoration"
         width={400}
         height={44}
         className="absolute left-1/2 top-0 z-10 h-auto w-auto -translate-x-1/2 -translate-y-full rotate-180"
-      />
+      /> */}
     </>
   )
 }
