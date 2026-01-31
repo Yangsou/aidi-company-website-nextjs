@@ -55,7 +55,7 @@ export default function HeroSection() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-6 text-5xl font-bold leading-tight md:text-7xl lg:text-8xl"
           >
-            <span className="font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#0036AF] md:text-[70px] mr-2">
+            <span className="mr-2 font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#0036AF] md:text-[70px]">
               {t('HeroSection.title')}
             </span>
             {/* <br /> */}
@@ -68,7 +68,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="font-manrope max-w-[732px] whitespace-break-spaces text-[20px] font-normal leading-[140%] tracking-[0%] text-[#202222]"
+            className="max-w-[744px] whitespace-pre-line text-left font-[Manrope] text-[20px] font-normal leading-[150%] tracking-[0%] text-[#202222]"
           >
             {t('HeroSection.description')}
           </motion.p>

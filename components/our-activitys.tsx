@@ -229,7 +229,7 @@ export default function OurActivitys() {
                               src={activity.image_url}
                               alt={activity.title}
                               fill
-                              className="z-10 object-cover object-center"
+                              className="z-10 object-center"
                               priority={index < 2}
                             />
                           ) : (
