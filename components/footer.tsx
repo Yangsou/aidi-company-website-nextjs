@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="flex justify-center bg-[#0036AF] py-16">
       <div className="container">
-        <div className="grid grid-cols-12 gap-7">
+        <div className="grid grid-cols-12 gap-4">
           {data.map((item) => (
             <div
               key={item.key}
@@ -109,35 +109,43 @@ export default function Footer() {
                 Reflect, Not Replace
               </div>
             </div>
-            <div className="hidden gap-4">
-              <Link href="/">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('home')}
-                </div>
+            <nav
+              className="flex flex-wrap items-center justify-center gap-6 lg:justify-end"
+              aria-label="Footer navigation"
+            >
+              <Link
+                href="/"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('home')}
               </Link>
-              <Link href="/about">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('about')}
-                </div>
+              <Link
+                href="/about"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('about')}
               </Link>
-              <Link href="/products">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('solutions')}
-                </div>
+              <Link
+                href="/products"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('solutions')}
               </Link>
               {process.env.disableCareer !== 'true' && (
-                <Link href="/career">
-                  <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                    {t('career')}
-                  </div>
+                <Link
+                  href="/career"
+                  className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+                >
+                  {t('career')}
                 </Link>
               )}
-              <Link href="/blog">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('blog')}
-                </div>
+              <Link
+                href="/blog"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('blog')}
               </Link>
-            </div>
+            </nav>
           </div>
           <div className="font-regular col-span-12 align-middle font-[Manrope] text-[16px] leading-[150%] tracking-[0%] text-[#EEEEEE]">
             Ai+Di JSC. All Rights Reserved 2025
