@@ -1,13 +1,18 @@
 'use client'
 import { Mail } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Link } from '@/i18n/navigation'
 
 import { FacebookIcon, YouTubeIcon, LinkedInIcon, TikTokIcon } from './social-icons'
 
+const ACADEMY_BASE =
+  process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? 'https://academy-website-nextjs.vercel.app'
+const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? 'https://erp-website-nextjs.vercel.app'
+
 export default function Footer() {
   const t = useTranslations('HomePage')
+  const locale = useLocale()
 
   const data = [
     {
@@ -125,12 +130,22 @@ export default function Footer() {
               >
                 {t('about')}
               </Link>
-              <Link
-                href="/products"
+              <a
+                href={`${ACADEMY_BASE}/${locale}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
               >
-                {t('solutions')}
-              </Link>
+                {t('solutions_education_footer')}
+              </a>
+              <a
+                href={`${ERP_BASE}/${locale}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('solutions_enterprise_footer')}
+              </a>
               {process.env.disableCareer !== 'true' && (
                 <Link
                   href="/career"
