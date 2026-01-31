@@ -55,12 +55,12 @@ export default function HeroSection() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-6 text-5xl font-bold leading-tight md:text-7xl lg:text-8xl"
           >
-            <span className="font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#0036AF] md:text-[70px]">
+            <span className="font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#0036AF] md:text-[70px] mr-2">
               {t('HeroSection.title')}
             </span>
             {/* <br /> */}
             <span className="font-[Manrope] text-[40px] font-medium leading-[110%] tracking-[-2%] text-[#202222] md:text-[70px]">
-              {t('HeroSection.sub_title')}{' '}
+              {t('HeroSection.sub_title')}
             </span>
           </motion.h1>
 

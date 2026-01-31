@@ -8,14 +8,20 @@ import { useEffect, useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 
 const MD_BREAKPOINT = 768
+const XL_BREAKPOINT = 1280
 
 export default function ValuesSection() {
   const t = useTranslations('HomePage.ValuesSection')
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [isTablet, setIsTablet] = useState(false)
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < MD_BREAKPOINT)
+    const check = () => {
+      const w = window.innerWidth
+      setIsMobile(w < MD_BREAKPOINT)
+      setIsTablet(w >= MD_BREAKPOINT && w < XL_BREAKPOINT)
+    }
     check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
@@ -54,10 +60,9 @@ export default function ValuesSection() {
   }
 
   const getFlexValue = (index: number) => {
-    if (isMobile) return 1
+    if (isMobile || isTablet) return 1
     if (hoveredIndex === null) return 1
-    if (hoveredIndex === index) return 2.2
-    return 0.6
+    return hoveredIndex === index ? 2.2 : 0.6
   }
 
   const springTransition = {
@@ -71,52 +76,47 @@ export default function ValuesSection() {
     ease: [0.33, 0.66, 0.2, 1] as const,
   }
   return (
-    <section className="container relative">
-      <div className="relative">
-        <div className="w-full bg-[#F7F9FD] md:absolute md:left-1/2 md:top-[-150px] md:-translate-x-1/2 lg:top-[-150px]">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mt-12 h-full grid-cols-12 gap-8 p-4 md:mt-0 md:grid"
-          >
-            <div
-              className="relative col-span-12 flex h-[calc(100vw_-_32px)] w-full items-center justify-center md:col-span-8 md:h-full"
-              style={{
-                background: '#0036AF',
-                height: '420px',
-              }}
+    <>
+      <section className="container relative w-full">
+        <div className="relative w-full">
+          <div className="w-full bg-[#F7F9FD] md:absolute md:left-1/2 md:top-[-150px] md:-translate-x-1/2 lg:top-[-150px]">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="container mt-12 flex h-full flex-col gap-8 p-4 md:mt-0 xl:flex-row"
             >
-              <div className="relative aspect-video w-[200px]">
-                <Image
-                  src="/home/button-play-media.png"
-                  alt="AI and human connection"
-                  fill
-                  className="z-10 object-contain"
-                  priority
-                />
+              <div className="relative flex aspect-[744/419.28] w-full min-w-0 max-w-[744px] shrink items-center justify-center bg-[#0036AF] xl:w-[744px] xl:shrink-0">
+                <div className="relative aspect-video w-[200px]">
+                  <Image
+                    src="/home/button-play-media.png"
+                    alt="AI and human connection"
+                    fill
+                    className="z-10 object-contain"
+                    priority
+                  />
+                </div>
               </div>
-            </div>
-            <div className="align-center col-span-12 flex flex-col justify-start gap-4 px-0 pt-12 md:col-span-4 md:px-4 md:pr-8">
-              {/* <motion.p className="font-[Manrope] text-4xl font-semibold tracking-[0%] text-[#0036AF] md:text-[42px]">
+              <div className="align-center flex flex-col justify-start gap-4 px-0 pt-12 md:px-4">
+                {/* <motion.p className="font-[Manrope] text-4xl font-semibold tracking-[0%] text-[#0036AF] md:text-[42px]">
                 {t('what_we_do')}
               </motion.p> */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="whitespace-break-spaces align-middle font-[Manrope] text-[14px] font-light leading-[150%] tracking-[0%] text-[#525757] md:text-[28px]"
-              >
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t.markup('what_we_do_long_txt', {
-                      b: (content) => `<b>${content}</b>`,
-                    }),
-                  }}
-                />
-              </motion.div>
-              {/* <motion.div
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="whitespace-break-spaces align-middle font-[Manrope] text-[14px] font-light leading-[150%] tracking-[0%] text-[#525757] md:text-[28px]"
+                >
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: t.markup('what_we_do_long_txt', {
+                        b: (content) => `<b>${content}</b>`,
+                      }),
+                    }}
+                  />
+                </motion.div>
+                {/* <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
@@ -132,32 +132,37 @@ export default function ValuesSection() {
                   </Button>
                 </Link>
               </motion.div> */}
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
-        <div className="bg-[white] pb-12 pt-12 md:pt-[520px] lg:pt-[400px] xl:pt-[380px] 2xl:pt-[320px]">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mb-8 text-left"
-          >
-            <h2 className="py-[16px] font-[Manrope] text-[32px] font-semibold leading-[110%] tracking-[0%] text-[#0036AF] md:text-[42px]">
-              {t('insight_rhythm')}
-            </h2>
-          </motion.div>
+      </section>
+      <section>
+        <div className="w-full bg-[white] pb-12 pt-12 md:pt-[520px] lg:pt-[400px] xl:pt-[380px] 2xl:pt-[320px]">
+          <div className="container">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mb-8 text-left"
+            >
+              <h2 className="py-[16px] font-[Manrope] text-[32px] font-semibold leading-[110%] tracking-[0%] text-[#0036AF] md:text-[42px]">
+                {t('insight_rhythm')}
+              </h2>
+            </motion.div>
+          </div>
 
-          <div className="flex min-h-[320px] flex-col gap-4 md:min-h-[380px] md:flex-row md:gap-0">
+          <div className="flex min-h-[380px] w-full flex-col md:grid md:min-h-[380px] md:grid-cols-2 xl:flex xl:flex-row">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                onMouseEnter={() => !isMobile && setHoveredIndex(index)}
-                onMouseLeave={() => !isMobile && setHoveredIndex(null)}
-                className="flex min-w-0 md:flex-1 md:cursor-pointer"
+                onMouseEnter={() => !isMobile && !isTablet && setHoveredIndex(index)}
+                onMouseLeave={() => !isMobile && !isTablet && setHoveredIndex(null)}
+                className="flex min-w-0 flex-1 md:cursor-pointer"
                 animate={{ flex: getFlexValue(index) }}
                 transition={springTransition}
               >
@@ -187,14 +192,31 @@ export default function ValuesSection() {
                         className="absolute inset-0 hidden bg-gradient-to-t from-black/70 via-black/20 to-transparent md:block"
                         aria-hidden
                       />
-                      {/* Title - góc trên trái, luôn hiển thị; mobile: đủ padding để không bị cắt */}
-                      <div className="absolute left-0 right-0 top-0 flex w-full max-w-full px-4 py-4 md:right-auto md:w-auto md:px-5 md:py-5">
-                        <h3 className="max-w-full break-words font-[Manrope] text-[18px] font-semibold leading-[120%] tracking-[2%] text-white drop-shadow-md md:text-[20px]">
-                          {feature.title}
+                      {/* Title - góc trên trái, padding theo design */}
+                      <div className="absolute left-0 right-0 top-0 flex w-full max-w-full px-6 py-6 md:right-auto md:w-auto md:px-[32px] md:py-[32px]">
+                        <h3
+                          className={`max-w-full break-words font-[Manrope] font-semibold leading-[120%] tracking-[2%] text-white drop-shadow-md transition-[font-size] duration-300 md:text-[24px] ${
+                            !isMobile && hoveredIndex === index
+                              ? 'text-[30px] md:text-[30px]'
+                              : 'text-[24px]'
+                          }`}
+                        >
+                          {(() => {
+                            const hasParen = feature.title.includes(' (')
+                            if (!hasParen) return feature.title
+                            if (!isMobile && hoveredIndex === index) return feature.title
+                            const [main, rest] = feature.title.split(' (')
+                            return (
+                              <>
+                                <span className="block">{main}</span>
+                                <span className="block">{rest ? `(${rest}` : ''}</span>
+                              </>
+                            )
+                          })()}
                         </h3>
                       </div>
-                      {/* Description - góc dưới; mobile: luôn hiện đủ, desktop: hiện khi hover */}
-                      <div className="absolute bottom-0 left-0 right-0 flex w-full max-w-full flex-col px-4 py-4 md:px-5 md:py-5">
+                      {/* Description - góc dưới, padding theo design */}
+                      <div className="absolute bottom-0 left-0 right-0 flex w-full max-w-full flex-col px-6 py-6 md:px-10 md:py-8">
                         <AnimatePresence mode="wait">
                           {isMobile || hoveredIndex === index ? (
                             <motion.p
@@ -203,7 +225,7 @@ export default function ValuesSection() {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 5 }}
                               transition={descriptionTransition}
-                              className="max-w-full break-words font-[Manrope] text-[14px] font-normal leading-[150%] text-white/95 md:text-[15px]"
+                              className="max-w-full break-words font-[Manrope] text-[20px] font-normal leading-[150%] text-white/95 md:text-[20px]"
                             >
                               {feature.description}
                             </motion.p>
@@ -217,7 +239,7 @@ export default function ValuesSection() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

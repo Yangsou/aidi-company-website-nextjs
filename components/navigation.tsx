@@ -62,8 +62,8 @@ export default function Navigation() {
   }
 
   const solutionsSubMenus = [
-    { name: t('solutions_education'), href: `${ACADEMY_BASE}/${locale}` },
-    { name: t('solutions_enterprise'), href: `${ERP_BASE}/${locale}` },
+    { name: t('solutions_education'), href: `${ACADEMY_BASE}/${locale}`, internal: false },
+    { name: t('solutions_enterprise'), href: `${ERP_BASE}/${locale}`, internal: false },
   ]
 
   const navItems = [
@@ -113,37 +113,56 @@ export default function Navigation() {
                     onMouseEnter={openSolutions}
                     onMouseLeave={closeSolutions}
                   >
-                    <motion.div
-                      className={cn(
-                        'font-manrope group relative flex h-full cursor-pointer items-center px-6 align-middle text-[18px] font-normal leading-[64px] tracking-[0%] transition-colors duration-200',
-                        'hover:bg-[#A3DDE1] hover:font-semibold hover:text-[#0036AF]',
-                        solutionsOpen && 'bg-[#A0DCDD] font-semibold text-[#012F97]',
-                        !solutionsOpen && 'text-[#626262]'
-                      )}
+                    <Link
+                      href={item.href}
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className="block h-full"
                     >
-                      {item.name}
-                    </motion.div>
+                      <motion.div
+                        className={cn(
+                          'font-manrope group relative flex h-full cursor-pointer items-center px-6 align-middle text-[18px] font-normal leading-[64px] tracking-[0%] transition-colors duration-200',
+                          'hover:bg-[#A3DDE1] hover:font-semibold hover:text-[#0036AF]',
+                          solutionsOpen && 'bg-[#A0DCDD] font-semibold text-[#012F97]',
+                          !solutionsOpen && 'text-[#626262]'
+                        )}
+                      >
+                        {item.name}
+                      </motion.div>
+                    </Link>
                     {solutionsOpen && (
                       <div
                         className="absolute left-0 top-full z-50 min-w-[200px] rounded-none border border-gray-200/80 bg-white p-0 font-normal shadow-lg"
                         role="menu"
                       >
-                        {item.subMenus.map((sub) => (
-                          <a
-                            key={sub.name}
-                            href={sub.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            role="menuitem"
-                            className={cn(
-                              'font-manrope block px-4 py-3 text-[18px] font-normal last:border-b-0',
-                              'bg-white font-normal text-[#626262] transition-colors duration-200',
-                              'hover:bg-[#DAF3F4] hover:font-semibold hover:text-[#0036AF]'
-                            )}
-                          >
-                            {sub.name}
-                          </a>
-                        ))}
+                        {item.subMenus.map((sub) => {
+                          const subItemClass = cn(
+                            'font-manrope block px-4 py-3 text-[18px] font-normal last:border-b-0',
+                            'bg-white font-normal text-[#626262] transition-colors duration-200',
+                            'hover:bg-[#DAF3F4] hover:font-semibold hover:text-[#0036AF]'
+                          )
+                          return sub.internal ? (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              role="menuitem"
+                              className={subItemClass}
+                            >
+                              {sub.name}
+                            </Link>
+                          ) : (
+                            <a
+                              key={sub.name}
+                              href={sub.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              role="menuitem"
+                              className={subItemClass}
+                            >
+                              {sub.name}
+                            </a>
+                          )
+                        })}
                       </div>
                     )}
                   </div>
@@ -206,39 +225,66 @@ export default function Navigation() {
                     key={item.name}
                     className="space-y-0"
                   >
-                    <button
-                      type="button"
-                      onClick={() => setMobileSolutionsOpen((prev) => !prev)}
-                      className={cn(
-                        'font-manrope flex w-full cursor-pointer items-center justify-between rounded-md px-3 py-2 text-left text-[18px] font-semibold transition-colors',
-                        mobileSolutionsOpen
-                          ? 'text-[#0036AF]'
-                          : 'text-[#626262] hover:text-[#0036AF]'
-                      )}
-                      aria-expanded={mobileSolutionsOpen}
-                    >
-                      {item.name}
-                      <ChevronDown
+                    <div className="flex w-full items-center">
+                      <Link
+                        href={item.href}
+                        onClick={() => {
+                          setIsOpen(false)
+                          window.scrollTo({ top: 0, behavior: 'smooth' })
+                        }}
                         className={cn(
-                          'h-5 w-5 shrink-0 transition-transform duration-200',
-                          mobileSolutionsOpen ? 'rotate-180 text-[#0036AF]' : 'text-[#626262]'
+                          'font-manrope flex-1 rounded-md px-3 py-2 text-left text-[18px] font-semibold transition-colors',
+                          'text-[#626262] hover:text-[#0036AF]'
                         )}
-                      />
-                    </button>
+                      >
+                        {item.name}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setMobileSolutionsOpen((prev) => !prev)
+                        }}
+                        className="rounded-md p-2"
+                        aria-expanded={mobileSolutionsOpen}
+                        aria-label={mobileSolutionsOpen ? 'Đóng menu' : 'Mở menu con'}
+                      >
+                        <ChevronDown
+                          className={cn(
+                            'h-5 w-5 shrink-0 transition-transform duration-200',
+                            mobileSolutionsOpen ? 'rotate-180 text-[#0036AF]' : 'text-[#626262]'
+                          )}
+                        />
+                      </button>
+                    </div>
                     {mobileSolutionsOpen && (
                       <div className="space-y-0 border-l-2 border-[#0036AF]/20 pl-4">
-                        {item.subMenus.map((sub) => (
-                          <a
-                            key={sub.name}
-                            href={sub.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => setIsOpen(false)}
-                            className="font-manrope block cursor-pointer rounded-md px-2 py-2 text-[16px] font-normal text-[#626262] hover:text-[#0036AF]"
-                          >
-                            {sub.name}
-                          </a>
-                        ))}
+                        {item.subMenus.map((sub) =>
+                          sub.internal ? (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              onClick={() => {
+                                setIsOpen(false)
+                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                              }}
+                              className="font-manrope block cursor-pointer rounded-md px-2 py-2 text-[16px] font-normal text-[#626262] hover:text-[#0036AF]"
+                            >
+                              {sub.name}
+                            </Link>
+                          ) : (
+                            <a
+                              key={sub.name}
+                              href={sub.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setIsOpen(false)}
+                              className="font-manrope block cursor-pointer rounded-md px-2 py-2 text-[16px] font-normal text-[#626262] hover:text-[#0036AF]"
+                            >
+                              {sub.name}
+                            </a>
+                          )
+                        )}
                       </div>
                     )}
                   </div>
