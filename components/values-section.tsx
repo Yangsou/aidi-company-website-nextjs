@@ -98,7 +98,7 @@ export default function ValuesSection() {
                   />
                 </div>
               </div>
-              <div className="align-center flex flex-col justify-start gap-4 px-0 pt-12 md:px-4">
+              <div className="align-center flex flex-col justify-start gap-4 px-0 pt-12 md:px-[40px]">
                 {/* <motion.p className="font-[Manrope] text-4xl font-semibold tracking-[0%] text-[#0036AF] md:text-[42px]">
                 {t('what_we_do')}
               </motion.p> */}
@@ -106,9 +106,10 @@ export default function ValuesSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
-                  className="whitespace-break-spaces align-middle font-[Manrope] text-[14px] font-light leading-[150%] tracking-[0%] text-[#525757] md:text-[28px]"
+                  className="max-w-[744px] whitespace-pre-line text-left font-[Manrope] text-[14px] font-light leading-[150%] tracking-[0%] text-[#525757] md:text-[28px]"
                 >
                   <p
+                    className="align-middle"
                     dangerouslySetInnerHTML={{
                       __html: t.markup('what_we_do_long_txt', {
                         b: (content) => `<b>${content}</b>`,
