@@ -62,7 +62,7 @@ export default function ValuesSection() {
   const getFlexValue = (index: number) => {
     if (isMobile || isTablet) return 1
     if (hoveredIndex === null) return 1
-    return hoveredIndex === index ? 2.2 : 0.6
+    return hoveredIndex === index ? 1.1 : 0.6
   }
 
   const springTransition = {
