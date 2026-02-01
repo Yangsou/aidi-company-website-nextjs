@@ -119,6 +119,8 @@ const nextConfig = {
 
   env: {
     disableCareer: 'true',
+    NEXT_PUBLIC_ERP_BASE_URL: process.env.NEXT_PUBLIC_ERP_BASE_URL,
+    NEXT_PUBLIC_ACADEMY_BASE_URL: process.env.NEXT_PUBLIC_ACADEMY_BASE_URL,
   },
 }
 
