@@ -8,9 +8,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, usePathname } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
-const ACADEMY_BASE =
-  process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? 'https://academy-website-nextjs.vercel.app'
-const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? 'https://erp-website-nextjs.vercel.app'
+const ACADEMY_BASE = process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? '/#'
+const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? '/#'
 
 export default function Navigation() {
   const t = useTranslations('HomePage')
