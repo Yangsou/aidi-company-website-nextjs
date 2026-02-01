@@ -1,12 +1,18 @@
 'use client'
-import { useTranslations } from 'next-intl'
+import { Mail } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Link } from '@/i18n/navigation'
 
 import { FacebookIcon, YouTubeIcon, LinkedInIcon, TikTokIcon } from './social-icons'
 
+const ACADEMY_BASE =
+  process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? 'https://academy-website-nextjs.vercel.app'
+const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? 'https://erp-website-nextjs.vercel.app'
+
 export default function Footer() {
   const t = useTranslations('HomePage')
+  const locale = useLocale()
 
   const data = [
     {
@@ -41,14 +47,14 @@ export default function Footer() {
               key={item.key}
               className="col-span-12 flex flex-col justify-between lg:col-span-3"
             >
-              <div className="min-h-[36px] align-middle font-[Manrope] text-2xl font-bold leading-[150%] tracking-[0%] text-[#EEEEEE]">
+              <div className="min-h-[36px] align-middle font-[Manrope] text-2xl font-bold leading-[150%] tracking-[0] text-[#EEEEEE]">
                 {item.title}
               </div>
               <div className="flex-1">
-                <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-lg font-bold leading-[150%] tracking-[0%] text-[#EEEEEE]">
+                <div className="font-manrope mt-3 whitespace-pre-line align-middle font-[Manrope] text-lg font-bold leading-[150%] tracking-[0] text-[#EEEEEE]">
                   {item.content}
                 </div>
-                <p className="mt-2 whitespace-pre-line font-[Manrope] text-base font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
+                <p className="mt-2 whitespace-pre-line font-[Manrope] text-base font-normal leading-[150%] tracking-[0] text-[#EEEEEE]">
                   {item.address}
                 </p>
               </div>
@@ -57,41 +63,47 @@ export default function Footer() {
               </p>
             </div>
           ))}
-          <div className="align-start col-span-12 flex justify-start gap-8 lg:col-span-3 lg:justify-end">
-            <Link
-              href="https://www.facebook.com/aidijsc"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="aidijsc"
-            >
-              <FacebookIcon />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/company/ai-di-world/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="ai-di-world"
-            >
-              <LinkedInIcon />
-            </Link>
-            <Link
-              href="https://www.youtube.com/@AiplusDiJSC"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="AiplusDiJSC"
-            >
-              <YouTubeIcon />
-            </Link>
-            <Link
-              href="https://www.tiktok.com/@aidiworld"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="aidiworld"
-            >
-              <TikTokIcon />
-            </Link>
+          <div className="col-span-12 flex flex-col justify-between lg:col-span-3">
+            <div className="flex w-full justify-start gap-8 lg:justify-end">
+              <Link
+                href="https://www.facebook.com/aidijsc"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="aidijsc"
+              >
+                <FacebookIcon />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/company/ai-di-world/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ai-di-world"
+              >
+                <LinkedInIcon />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@AiplusDiJSC"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="AiplusDiJSC"
+              >
+                <YouTubeIcon />
+              </Link>
+              <Link
+                href="https://www.tiktok.com/@aidiworld"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="aidiworld"
+              >
+                <TikTokIcon />
+              </Link>
+            </div>
+            <p className="mt-2 text-right font-[Manrope] text-base font-normal leading-[150%] tracking-[0%] text-[#EEEEEE]">
+              <Mail className="mr-2 inline" />
+              <Link href="mailto:contact@aidi.world">contact@aidi.world</Link>
+            </p>
           </div>
-          <div className="col-span-12 mt-16 flex w-full flex-col items-center justify-between gap-4 border-b-2 border-[#EEEEEE] pb-4 lg:flex-row">
+          <div className="col-span-12 mt-16 flex w-full flex-col items-center justify-between gap-4 border-b-[1px] border-[#EEEEEE] pb-4 lg:flex-row">
             <div className="flex items-end justify-start gap-4">
               <img
                 src="/footer/logo-footer.svg"
@@ -102,35 +114,53 @@ export default function Footer() {
                 Reflect, Not Replace
               </div>
             </div>
-            <div className="flex gap-4">
-              <Link href="/">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('home')}
-                </div>
+            <nav
+              className="flex flex-wrap items-center justify-center gap-6 lg:justify-end"
+              aria-label="Footer navigation"
+            >
+              <Link
+                href="/"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('home')}
               </Link>
-              <Link href="/about">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('about')}
-                </div>
+              <Link
+                href="/about"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('about')}
               </Link>
-              <Link href="/products">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('solutions')}
-                </div>
-              </Link>
+              <a
+                href={`${ACADEMY_BASE}/${locale}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('solutions_education_footer')}
+              </a>
+              <a
+                href={`${ERP_BASE}/${locale}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('solutions_enterprise_footer')}
+              </a>
               {process.env.disableCareer !== 'true' && (
-                <Link href="/career">
-                  <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                    {t('career')}
-                  </div>
+                <Link
+                  href="/career"
+                  className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+                >
+                  {t('career')}
                 </Link>
               )}
-              <Link href="/blog">
-                <div className="align-middle font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE]">
-                  {t('blog')}
-                </div>
+              <Link
+                href="/blog"
+                className="font-[Manrope] text-[16px] font-bold uppercase leading-[150%] tracking-[0%] text-[#EEEEEE] transition-opacity hover:opacity-80"
+              >
+                {t('blog')}
               </Link>
-            </div>
+            </nav>
           </div>
           <div className="font-regular col-span-12 align-middle font-[Manrope] text-[16px] leading-[150%] tracking-[0%] text-[#EEEEEE]">
             Ai+Di JSC. All Rights Reserved 2025

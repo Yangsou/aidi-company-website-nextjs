@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 // import { getCategoryReadTime } from '@/lib/blog-helpers'
 import { useHighlightArticle } from '@/lib/hooks/use-blog-data'
-import { formatDateString } from '@/lib/utils'
+// import { formatDateString } from '@/lib/utils'
 
 import { Skeleton } from './ui/skeleton'
 
@@ -32,12 +32,13 @@ const BannerSkeleton = () => {
 
 function BannerItem({ article }: { article: Article }) {
   const t = useTranslations('BlogPage')
-  const { title, category, slug = '', publishedAt, cover_url: coverUrl } = article
+  // const { title, category, slug = '', publishedAt, cover_url: coverUrl } = article
+  const { title, category, slug = '', cover_url: coverUrl } = article
   return (
     <>
       <div className="col-span-12 flex flex-col gap-4 bg-[#FFFFFF] lg:col-span-6">
         <div className="p-8">
-          <div className="font-[Manrope] text-[24px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
+          <div className="mb-4 font-[Manrope] text-[24px] font-semibold uppercase leading-[140%] text-[#00C8B3]">
             {category?.name}
           </div>
           <Link
@@ -47,9 +48,9 @@ function BannerItem({ article }: { article: Article }) {
             {title}
           </Link>
           <div className="mt-4 flex items-center justify-start gap-12">
-            <div className="font-[Manrope] text-[20px] font-normal leading-[150%] text-[#525757]">
+            {/* <div className="font-[Manrope] text-[20px] font-normal leading-[150%] text-[#525757]">
               {formatDateString(publishedAt)}
-            </div>
+            </div> */}
             <div className="flex items-center gap-2 font-[Manrope] text-[20px] font-normal leading-[150%] text-[#525757]">
               {/* <div className="h-[13px] w-[13px] rounded-full bg-[#00C8B3]" />{' '}
               {getCategoryReadTime(article)} */}
@@ -57,7 +58,7 @@ function BannerItem({ article }: { article: Article }) {
           </div>
           <div className="pt-4">
             <Link href={`/blog/${slug ?? ''}`}>
-              <button className="border border-[#A0DCDD] px-4 py-2 align-middle font-[Manrope] text-[18px] font-semibold leading-[150%] text-[#A0DCDD] hover:border-transparent hover:bg-[#A0DCDD] hover:text-white">
+              <button className="border border-[#A0DCDD] px-4 py-2 align-middle font-[Manrope] text-[18px] font-semibold leading-[150%] text-[#A0DCDD] hover:border-transparent hover:bg-[#A0DCDD] hover:text-[#0036AF]">
                 {t('read_more')}
                 <span className="ml-2">→</span>
               </button>
