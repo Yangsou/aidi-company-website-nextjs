@@ -28,6 +28,9 @@ stages:
         tags: |
           $(Build.BuildId)
           latest
+        arguments: |
+          --build-arg NEXT_PUBLIC_ACADEMY_BASE_URL=$(NEXT_PUBLIC_ACADEMY_BASE_URL)
+          --build-arg NEXT_PUBLIC_ERP_BASE_URL=$(NEXT_PUBLIC_ERP_BASE_URL)
 
 - stage: Deploy
   displayName: Deploy to Azure Container App
