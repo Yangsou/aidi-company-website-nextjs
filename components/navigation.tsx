@@ -9,8 +9,8 @@ import { Link, usePathname } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 export default function Navigation() {
-  const ACADEMY_BASE = process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? '/#'
-  const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? '/#'
+  const ACADEMY_BASE = process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? 'https://academy.aidi.world'
+  const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? 'https://erp.aidi.world'
   const t = useTranslations('HomePage')
   const locale = useLocale()
 
