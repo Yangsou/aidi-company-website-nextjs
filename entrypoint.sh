@@ -11,4 +11,7 @@ sed -i "s|__ADMIN_PASSWORD__|${ADMIN_PASSWORD}|g" ./.env
 sed -i "s|__STRAPI_API_URL__|${STRAPI_API_URL}|g" ./.env
 sed -i "s|__STRAPI_API_KEY__|${STRAPI_API_KEY}|g" ./.env
 
+sed -i "s|__NEXT_PUBLIC_ACADEMY_BASE_URL__|${NEXT_PUBLIC_ACADEMY_BASE_URL}|g" ./.env
+sed -i "s|__NEXT_PUBLIC_ERP_BASE_URL__|${NEXT_PUBLIC_ERP_BASE_URL}|g" ./.env
+
 exec "$@"
