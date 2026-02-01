@@ -80,7 +80,7 @@ export default function Navigation() {
       animate={{ y: 0 }}
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'border-b border-cyan-400/20 bg-white shadow-sm shadow-cyan-500/5 backdrop-blur-xl'
+          ? 'border-b border-gray-200 bg-white shadow-sm shadow-gray-200/50 backdrop-blur-xl'
           : 'bg-white shadow-lg backdrop-blur-md'
       }`}
     >
@@ -113,10 +113,16 @@ export default function Navigation() {
                     onMouseEnter={openSolutions}
                     onMouseLeave={closeSolutions}
                   >
-                    <Link
-                      href={item.href}
-                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                      className="block h-full"
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setSolutionsOpen((prev) => !prev)
+                      }}
+                      className="block h-full w-full text-left"
+                      aria-expanded={solutionsOpen}
+                      aria-haspopup="true"
+                      aria-label={item.name}
                     >
                       <motion.div
                         className={cn(
@@ -128,7 +134,7 @@ export default function Navigation() {
                       >
                         {item.name}
                       </motion.div>
-                    </Link>
+                    </button>
                     {solutionsOpen && (
                       <div
                         className="absolute left-0 top-full z-50 min-w-[200px] rounded-none border border-gray-200/80 bg-white p-0 font-normal shadow-lg"
@@ -226,25 +232,22 @@ export default function Navigation() {
                     className="space-y-0"
                   >
                     <div className="flex w-full items-center">
-                      <Link
-                        href={item.href}
-                        onClick={() => {
-                          setIsOpen(false)
-                          window.scrollTo({ top: 0, behavior: 'smooth' })
-                        }}
-                        className={cn(
-                          'font-manrope flex-1 rounded-md px-3 py-2 text-left text-[18px] font-semibold transition-colors',
-                          'text-[#626262] hover:text-[#0036AF]'
-                        )}
-                      >
-                        {item.name}
-                      </Link>
                       <button
                         type="button"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          setMobileSolutionsOpen((prev) => !prev)
-                        }}
+                        onClick={() => setMobileSolutionsOpen((prev) => !prev)}
+                        className={cn(
+                          'font-manrope flex flex-1 items-center gap-1 rounded-md px-3 py-2 text-left text-[18px] font-semibold transition-colors',
+                          'text-[#626262] hover:text-[#0036AF]'
+                        )}
+                        aria-expanded={mobileSolutionsOpen}
+                        aria-haspopup="true"
+                        aria-label={item.name}
+                      >
+                        {item.name}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setMobileSolutionsOpen((prev) => !prev)}
                         className="rounded-md p-2"
                         aria-expanded={mobileSolutionsOpen}
                         aria-label={mobileSolutionsOpen ? 'Đóng menu' : 'Mở menu con'}
