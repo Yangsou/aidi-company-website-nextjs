@@ -2,16 +2,17 @@
 
 import { motion } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 
 import { Link, usePathname } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 export default function Navigation() {
-  const ACADEMY_BASE = process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? '/#'
-  const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? '/#'
+  const ACADEMY_BASE = process.env.NEXT_PUBLIC_ACADEMY_BASE_URL ?? 'https://academy.aidi.world'
+  const ERP_BASE = process.env.NEXT_PUBLIC_ERP_BASE_URL ?? 'https://erp.aidi.world'
   const t = useTranslations('HomePage')
+  const locale = useLocale()
 
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -59,8 +60,8 @@ export default function Navigation() {
   }
 
   const solutionsSubMenus = [
-    { name: t('solutions_education'), href: `${ACADEMY_BASE}`, internal: false },
-    { name: t('solutions_enterprise'), href: `${ERP_BASE}`, internal: false },
+    { name: t('solutions_education'), href: `${ACADEMY_BASE}/${locale}`, internal: false },
+    { name: t('solutions_enterprise'), href: `${ERP_BASE}/${locale}`, internal: false },
   ]
 
   const navItems = [
