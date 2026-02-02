@@ -80,7 +80,6 @@ export async function GET(_request: NextRequest) {
 
         if (member.avatar) {
           avatarUrl = resolveUrl(baseUrl, member.avatar.url)
-          // environment === 'development' ? `${baseUrl}${member.avatar.url}` : member.avatar.url
         }
 
         return {
