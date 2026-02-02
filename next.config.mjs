@@ -61,6 +61,10 @@ const remotePatterns = [
     protocol: 'https',
     hostname: '*.strapiapp.com',
   },
+  {
+    protocol: 'https',
+    hostname: 'cms.aidi.world',
+  },
 ]
 
 const strapiRemotePattern = createStrapiRemotePattern()

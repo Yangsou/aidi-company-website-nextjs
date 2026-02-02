@@ -2,7 +2,7 @@ import axios, { isAxiosError } from 'axios'
 import { NextResponse } from 'next/server'
 
 import { routing } from '@/i18n/routing'
-import { requireEnv, trimTrailingSlash } from '@/lib/env'
+import { requireEnv, resolveUrl, trimTrailingSlash } from '@/lib/env'
 
 import type { AxiosRequestConfig } from 'axios'
 import type { NextRequest } from 'next/server'
@@ -54,7 +54,6 @@ export async function GET(_request: NextRequest) {
   try {
     const baseUrl = trimTrailingSlash(requireEnv('STRAPI_API_URL'))
     const apiKey = requireEnv('STRAPI_API_KEY')
-    const environment = process.env.ENVIRONMENT ?? 'production'
     const { searchParams } = new URL(_request.url)
     const locale = searchParams.get('locale') ?? routing.defaultLocale
 
@@ -80,8 +79,8 @@ export async function GET(_request: NextRequest) {
         let avatarUrl: string | null = null
 
         if (member.avatar) {
-          avatarUrl =
-            environment === 'development' ? `${baseUrl}${member.avatar.url}` : member.avatar.url
+          avatarUrl = resolveUrl(baseUrl, member.avatar.url)
+          // environment === 'development' ? `${baseUrl}${member.avatar.url}` : member.avatar.url
         }
 
         return {
