@@ -7,8 +7,45 @@ import { useEffect, useState } from 'react'
 
 import { Card, CardContent } from '@/components/ui/card'
 
+import { Dialog, DialogContent, DialogTrigger } from './ui/dialog'
+
 const MD_BREAKPOINT = 768
 const XL_BREAKPOINT = 1280
+
+function VideoDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger>
+        <div className="relative aspect-video w-32 lg:w-[200px]">
+          <Image
+            src="/home/button-play-media.png"
+            alt="AI and human connection"
+            fill
+            className="z-10 object-contain"
+            priority
+          />
+        </div>
+      </DialogTrigger>
+      <DialogContent
+        className="w-full max-w-[900px] rounded-none border-none bg-transparent p-0"
+        hideClose
+      >
+        <div className="aspect-video">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/XqpTH0bSimI?si=7Mj8WkRgH7TlHUeB"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
 
 export default function ValuesSection() {
   const t = useTranslations('HomePage.ValuesSection')
@@ -79,39 +116,18 @@ export default function ValuesSection() {
     <>
       <section className="container relative w-full">
         <div className="relative w-full">
-          <div className="w-full bg-[#F7F9FD] md:absolute md:left-1/2 md:top-[-150px] md:-translate-x-1/2 lg:top-[-150px]">
+          <div className="w-full bg-[#F7F9FD] shadow-[0_0_8px_rgba(0,0,0,0.1)] md:absolute md:left-1/2 md:top-[-150px] md:-translate-x-1/2 lg:top-[-150px]">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="container mt-12 flex h-full flex-col gap-8 p-4 md:mt-0 xl:flex-row"
+              className="container mt-12 flex h-full flex-col gap-8 p-5 md:mt-0 xl:flex-row"
             >
-              <div className="relative flex aspect-[744/419.28] w-full min-w-0 max-w-[744px] shrink items-center justify-center bg-[#0036AF] xl:w-[744px] xl:shrink-0">
-                <iframe
-                  width="744"
-                  height="100%"
-                  src="https://www.youtube.com/embed/XqpTH0bSimI?si=7Mj8WkRgH7TlHUeB"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-                {/* <div className="relative aspect-video w-[200px]">
-                  <Image
-                    src="/home/button-play-media.png"
-                    alt="AI and human connection"
-                    fill
-                    className="z-10 object-contain"
-                    priority
-                  />
-                </div> */}
+              <div className="relative flex aspect-[744/419.28] w-full min-w-0 max-w-[744px] shrink items-center justify-center bg-[url(/home/home-youtube-thumbnail.png)] bg-cover xl:w-[744px] xl:shrink-0">
+                <VideoDialog />
               </div>
-              <div className="align-center flex flex-col justify-start gap-4 px-0 md:px-[40px] md:pt-12">
-                {/* <motion.p className="font-[Manrope] text-4xl font-semibold tracking-[0%] text-[#0036AF] md:text-[42px]">
-                {t('what_we_do')}
-              </motion.p> */}
+              <div className="align-center flex flex-col justify-start gap-4 px-0 md:px-[52px] md:pt-12">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
