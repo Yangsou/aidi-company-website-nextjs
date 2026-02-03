@@ -6,6 +6,7 @@ import BtnScrollTop from '@/components/btn-scroll-top'
 import Footer from '@/components/footer'
 import Navigation from '@/components/navigation'
 import { routing } from '@/i18n/routing'
+import { getCurrentDomain } from '@/lib/env'
 
 import type { Metadata } from 'next'
 
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${t('HeroSection.title')} ${t('HeroSection.sub_title')}`
   const description = t('HeroSection.description')
-  // console.warn(headersList)
+
   return {
     title,
     description,
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      images: ['/logo-AIDI.png'],
+      images: [`${getCurrentDomain()}/logo-AIDI.png`],
       type: 'website',
     },
   }
