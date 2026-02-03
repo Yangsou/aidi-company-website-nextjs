@@ -152,63 +152,14 @@ export default function OurActivitys() {
       <div className="absolute bottom-0 left-0 h-[400px] w-full bg-[url('/blog/related-blog-bg.svg')] bg-contain bg-bottom bg-no-repeat lg:h-[524px] lg:bg-cover xl:h-[632px] 2xl:h-[776px]" />
 
       <MaskImage />
-      <div className="container relative z-10 gap-4 space-y-3 py-12">
-        <div className="text-center font-[Manrope] text-4xl font-bold leading-[110%] tracking-[0%] text-[#202222] md:text-[56px]">
-          {/* {t('our_activities')} */}
-        </div>
-        {/* <div className="font-regular mx-auto mt-2 max-w-[730px] text-center align-middle font-[Manrope] text-lg leading-[150%] tracking-[0%] text-[#525757] md:text-[20px]">
-          {t('our_activities_desc')}
-        </div> */}
-
+      <div className="container relative z-10 gap-4 pb-[128px] pt-[52px]">
         {activities.length === 0 ? (
           <div className="flex items-center justify-center py-12">
             <p className="text-[#525757]">No activities available</p>
           </div>
         ) : (
           <div className="flex justify-center">
-            {/* <div className="grid h-full grid-cols-12 gap-8 py-12"> */}
-            {/* First Large Activity */}
-            {/* {firstActivity && (
-                <div className="col-span-12 h-full lg:col-span-6">
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -10 }}
-                    className="h-full bg-[#F7F9FD]"
-                  >
-                    <Card className="group h-full overflow-hidden rounded-none border-none shadow-none">
-                      <CardContent className="p-0 text-center shadow-none">
-                        <motion.div className="relative mx-auto flex h-[489px] items-center justify-start">
-                          {firstActivity.image_url ? (
-                            <Image
-                              src={firstActivity.image_url}
-                              alt={firstActivity.title}
-                              fill
-                              className="z-10 object-cover object-center"
-                              priority
-                            />
-                          ) : (
-                            <div className="h-full w-full bg-[#0036AF]" />
-                          )}
-                        </motion.div>
-
-                        <div className="h-[206px] p-[20px] text-left">
-                          <h3 className="truncate align-middle font-[Manrope] text-[42px] font-semibold leading-[110%] tracking-[0%] text-[#202222]">
-                            {firstActivity.title}
-                          </h3>
-                          <p className="text- mt-2 line-clamp-4 align-middle font-[Manrope] text-[18px] font-normal leading-[150%] tracking-[0%] text-[#626262x]">
-                            {extractText(firstActivity.description)}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </div>
-              )} */}
-
-            {/* </div> */}
-            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {activities.map((activity, index) => (
                 <div
                   key={activity.id}

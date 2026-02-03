@@ -88,7 +88,17 @@ export default function ValuesSection() {
               className="container mt-12 flex h-full flex-col gap-8 p-4 md:mt-0 xl:flex-row"
             >
               <div className="relative flex aspect-[744/419.28] w-full min-w-0 max-w-[744px] shrink items-center justify-center bg-[#0036AF] xl:w-[744px] xl:shrink-0">
-                <div className="relative aspect-video w-[200px]">
+                <iframe
+                  width="744"
+                  height="100%"
+                  src="https://www.youtube.com/embed/XqpTH0bSimI?si=7Mj8WkRgH7TlHUeB"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+                {/* <div className="relative aspect-video w-[200px]">
                   <Image
                     src="/home/button-play-media.png"
                     alt="AI and human connection"
@@ -96,9 +106,9 @@ export default function ValuesSection() {
                     className="z-10 object-contain"
                     priority
                   />
-                </div>
+                </div> */}
               </div>
-              <div className="align-center flex flex-col justify-start gap-4 px-0 pt-12 md:px-[40px]">
+              <div className="align-center flex flex-col justify-start gap-4 px-0 md:px-[40px] md:pt-12">
                 {/* <motion.p className="font-[Manrope] text-4xl font-semibold tracking-[0%] text-[#0036AF] md:text-[42px]">
                 {t('what_we_do')}
               </motion.p> */}

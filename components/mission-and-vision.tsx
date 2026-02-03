@@ -9,7 +9,7 @@ export default function MissionAndVision() {
   return (
     <section
       id="mission-and-vision"
-      className="relative flex h-[860px] overflow-hidden bg-white"
+      className="relative flex h-[720px] overflow-hidden bg-white"
     >
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -20,8 +20,7 @@ export default function MissionAndVision() {
           className="hidden object-cover object-bottom lg:block"
           priority
         />
-        <div className="flex h-full w-full flex-col justify-between md:flex-row lg:flex-row pt-[4rem]">
-          {/* Mission - iPad: 1 cột cân đối, text trắng trên nền xanh đậm */}
+        <div className="flex h-full w-full flex-col justify-between pt-0 md:flex-row lg:flex-row">
           <div className="relative flex flex-1 flex-col justify-center gap-4 bg-[#0036AF] pb-6 pl-8 pr-8 pt-12 md:pb-16 md:pl-10 md:pr-10 md:pt-16 lg:bg-transparent lg:pb-32 lg:pl-20 lg:pr-0 lg:pt-0">
             <Image
               src="/home/mission-image-new.png"
