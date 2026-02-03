@@ -139,7 +139,7 @@ export default function ValuesSection() {
         </div>
       </section>
       <section>
-        <div className="w-full bg-[white] pb-12 pt-12 md:pt-[520px] lg:pt-[400px] xl:pt-[380px] 2xl:pt-[320px]">
+        <div className="w-full bg-[white] pb-12 pt-12 md:pt-[520px] lg:pt-[320px] xl:pt-[320px] 2xl:pt-[320px]">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

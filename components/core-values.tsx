@@ -31,7 +31,7 @@ export default function CoreValues() {
                 viewport={{ once: true }}
               >
                 <div
-                  className="whitespace-break-spaces align-middle font-[Manrope] text-[22px] font-normal leading-[150%] tracking-[0%] text-[#626262] lg:min-w-[490px]"
+                  className="whitespace-break-spaces align-middle font-[Manrope] text-[22px] font-normal leading-[150%] tracking-[0%] text-[#525757] lg:min-w-[490px]"
                   dangerouslySetInnerHTML={{
                     __html: t.markup('description', {
                       b: (chunks) => `<b className="font-semibold">${chunks}</b>`,
